@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/main.css" rel="stylesheet" />
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HR3RRyTsXYdQ3QzzG5yUkg0q"></script>
+    <script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.6.4/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+<a href="index.html"><span class="mui-icon mui-icon-arrowleft" ></span></a>
+<h1 class="mui-title">ROOM TYPES</h1>
+<a href="feed-back.html"><img  class="mui-pull-right" width=24 style="margin-top:8px;" src="images/main/msg-ico.png"></a>
+</header>
+
+<nav class="mui-bar mui-bar-tab" id="tab-bottom">
+  	<a class="mui-tab-item" v=1 href="#tabbar" >
+		<img src="images/main/jianjie.png" >
+		<span class="mui-tab-label" >简介</span>
+	</a>
+	<a class="mui-tab-item  mui-active" id="popover-btn"  v=2 href="#tabbar-with-chat">
+		<img src="images/main/yuding1.png" >
+		<span class="mui-tab-label">预定</span>
+	</a>
+	<a class="mui-tab-item"  v=3 href="#tabbar-with-sms">
+		<img src="images/main/fuwu.png" >
+		<span class="mui-tab-label">服务</span>
+	</a>
+	<a class="mui-tab-item"  v=4 href="#tabbar-with-map">
+		<img src="images/main/huiyuan.png" >
+		<span class="mui-tab-label">微会员</span>
+	</a>
+</nav>
+
+<div class="mui-content">
+	<ul class="mui-table-view" id="house-list">
+    <li class="mui-table-view-cell">
+        <div><img src="images/main/house.png" style="display:block" width="100%"></div>
+        <div class="mui-row house-title">
+          <div class="mui-col-sm-8 mui-col-xs-8">
+            <span>Two bedroom – 110 sqm</span>
+            <span>二房 – 110 平方米</span>
+          </div>
+          <div class="mui-col-sm-4 mui-col-xs-4">
+            <a href="http://cn.shama.com/xujiahui/1bedroom.aspx" target ="_blank" style="color:#fff;">BOOK NOW <img src="images/main/book.png" style="float:left; margin-top:5px;margin-left:5px;"></a>
+          </div>
+        </div>
+        <div class="mui-row item-detail">
+          <div class="mui-col-sm-2 mui-col-xs-2">
+            <img src="images/main/room1.png" width=24 />
+          </div>
+          <div class="mui-col-sm-10 mui-col-xs-10">
+            <span>Apartment Highlights 客房亮点:</span><br>
+            Living and dining area, one master bedroom, one guest bedroom and one bathroom<br>
+宽敞的客厅及餐厅区域，一个主卧及客客卧室，一个浴室<br>
+Fully equipped kitchenette<br>
+独立的全配套厨房
+          </div>
+        </div>
+        <div class="mui-row item-detail">
+          <div class="mui-col-sm-2 mui-col-xs-2">
+              <img src="images/main/room2.png" width=24 />
+          </div>
+          <div class="mui-col-sm-10 mui-col-xs-10">
+            <span>Japanese-style bidet in master bathroom</span><br>
+            主浴室附有日式卫浴设备
+          </div>
+        </div>
+        <div class="mui-row item-detail">
+          <div class="mui-col-sm-2 mui-col-xs-2">
+              <img src="images/main/room3.png" width=24 />
+          </div>
+          <div class="mui-col-sm-10 mui-col-xs-10">
+            <span>Master bathroom with bathtub. Guest bathroom with standing shower.</span><br>
+            主浴室配置浴缸，客浴室配置淋浴房
+          </div>
+        </div>
+        <div class="mui-row item-detail">
+          <div class="mui-col-sm-2 mui-col-xs-2">
+              <img src="images/main/room4.png" width=24 />
+          </div>
+          <div class="mui-col-sm-10 mui-col-xs-10">
+            <span>Bed Type: Queen and double size, sofa bed</span><br>
+            床型：大床，双人床及沙发床
+          </div>
+        </div>
+        <div class="mui-row read-more">
+          <div class="mui-col-sm-12 mui-col-xs-12"  onclick="showDetail('images/main/h1.jpg');">
+            <a href="javascript:void(0);"  style="color:#fff;">查看平面图</a>
+          </div>
+        </div>
+    </li>
+	    <li class="mui-table-view-cell">
+	    		<div><img src="images/main/house.png" style="display:block" width="100%"></div>
+	    		<div class="mui-row house-title">
+	    			<div class="mui-col-sm-8 mui-col-xs-8">
+	    				<span>Three bedroom – 128 sqm</span>
+	    				<span>三房 -128 平方米</span>
+	    			</div>
+	    			<div class="mui-col-sm-4 mui-col-xs-4">
+	    				<a href="http://cn.shama.com/xujiahui/1bedroom.aspx" target ="_blank" style="color:#fff;">BOOK NOW <img src="images/main/book.png" style="float:left; margin-top:5px;margin-left:5px;"></a>
+	    			</div>
+	    		</div>
+    			<div class="mui-row item-detail">
+    				<div class="mui-col-sm-2 mui-col-xs-2">
+    					<img src="images/main/room1.png" width=24 />
+    				</div>
+    				<div class="mui-col-sm-10 mui-col-xs-10">
+    					<span>Apartment Highlights 客房亮点:</span><br>
+    					Living and dining area, one master bedroom, one guest bedroom, one study room, and two bathrooms<br>
+宽敞的客厅及餐厅区域，一个主卧及客卧室，一个书房，两个浴室<br>
+Fully equipped kitchenette<br>
+独立的全配套厨房
+    				</div>
+    			</div>
+    			<div class="mui-row item-detail">
+    				<div class="mui-col-sm-2 mui-col-xs-2">
+    						<img src="images/main/room2.png" width=24 />
+    				</div>
+    				<div class="mui-col-sm-10 mui-col-xs-10">
+    					<span>Japanese-style bidet in master bathroom</span><br>
+    					主浴室附有日式卫浴设备
+    				</div>
+    			</div>
+    			<div class="mui-row item-detail">
+    				<div class="mui-col-sm-2 mui-col-xs-2">
+    						<img src="images/main/room3.png" width=24 />
+    				</div>
+    				<div class="mui-col-sm-10 mui-col-xs-10">
+    					<span>Master bathroom with bathtub. Guest bathroom with standing shower.</span><br>
+    					主浴室配置浴缸，客浴室配置淋浴房
+    				</div>
+    			</div>
+    			<div class="mui-row item-detail">
+    				<div class="mui-col-sm-2 mui-col-xs-2">
+    						<img src="images/main/room4.png" width=24 />
+    				</div>
+    				<div class="mui-col-sm-10 mui-col-xs-10">
+    					<span>Bed Type: Queen and double size, sofa bed</span><br>
+    					床型：大床，双人床及沙发床
+    				</div>
+    			</div>
+    			<div class="mui-row read-more">
+    				<div class="mui-col-sm-12 mui-col-xs-12"  onclick="showDetail('images/main/h2.jpg');">
+    					<a href="javascript:void(0);"  style="color:#fff;">查看平面图</a>
+    				</div>
+    			</div>
+	    </li>
+
+      <li class="mui-table-view-cell">
+	    		<div class="mui-row house-title">
+	    			<div class="mui-col-sm-8 mui-col-xs-8">
+	    				<span>Three bedroom – 140 sqm</span>
+	    				<span>三房 -140 平方米</span>
+	    			</div>
+	    			<div class="mui-col-sm-4 mui-col-xs-4">
+	    				<a href="http://cn.shama.com/xujiahui/1bedroom.aspx" target ="_blank" style="color:#fff;">BOOK NOW <img src="images/main/book.png" style="float:left; margin-top:5px;margin-left:5px;"></a>
+	    			</div>
+	    		</div>
+    			<div class="mui-row item-detail">
+    				<div class="mui-col-sm-2 mui-col-xs-2">
+    					<img src="images/main/room1.png" width=24 />
+    				</div>
+    				<div class="mui-col-sm-10 mui-col-xs-10">
+    					<span>Apartment Highlights 客房亮点:</span><br>
+    					Living and dining area, one master bedroom, one guest bedroom, one study room, and two bathrooms<br>
+宽敞的客厅及餐厅区域，一个主卧及客卧室，一个书房，两个浴室<br>
+Fully equipped kitchenette<br>
+独立的全配套厨房
+    				</div>
+    			</div>
+    			<div class="mui-row item-detail">
+    				<div class="mui-col-sm-2 mui-col-xs-2">
+    						<img src="images/main/room2.png" width=24 />
+    				</div>
+    				<div class="mui-col-sm-10 mui-col-xs-10">
+    					<span>Japanese-style bidet in master bathroom</span><br>
+    					主浴室附有日式卫浴设备
+    				</div>
+    			</div>
+    			<div class="mui-row item-detail">
+    				<div class="mui-col-sm-2 mui-col-xs-2">
+    						<img src="images/main/room3.png" width=24 />
+    				</div>
+    				<div class="mui-col-sm-10 mui-col-xs-10">
+    					<span>Master bathroom with bathtub. Guest bathroom with standing shower.</span><br>
+    					主浴室配置浴缸，客浴室配置淋浴房
+    				</div>
+    			</div>
+    			<div class="mui-row item-detail">
+    				<div class="mui-col-sm-2 mui-col-xs-2">
+    						<img src="images/main/room4.png" width=24 />
+    				</div>
+    				<div class="mui-col-sm-10 mui-col-xs-10">
+    					<span>Bed Type: Queen and double size, sofa bed</span><br>
+    					床型：大床，双人床及沙发床
+    				</div>
+    			</div>
+    			<div class="mui-row read-more">
+    				<div class="mui-col-sm-12 mui-col-xs-12"  onclick="showDetail('images/main/h3.jpg');">
+    					<a href="javascript:void(0);"  style="color:#fff;">查看平面图</a>
+    				</div>
+    			</div>
+	    </li>
+      <li class="mui-table-view-cell">
+	    		<div class="mui-row house-title">
+	    			<div class="mui-col-sm-8 mui-col-xs-8">
+	    				<span>One bedroom – 96 sqm</span>
+	    				<span>一房 – 96平方米</span>
+	    			</div>
+  	    			<div class="mui-col-sm-4 mui-col-xs-4 bg-grey">
+	    				<a href="http://cn.shama.com/xujiahui/1bedroom.aspx" target ="_blank" style="color:#fff;">BOOK NOW <img src="images/main/book1.png" style="float:left; margin-top:5px;margin-left:5px;"></a>
+	    			</div>
+	    		</div>
+    			<div class="mui-row item-detail">
+    				<div class="mui-col-sm-2 mui-col-xs-2">
+    					<img src="images/main/room1.png" width=24 />
+    				</div>
+    				<div class="mui-col-sm-10 mui-col-xs-10">
+    					<span>Apartment Highlights 客房亮点:</span><br>
+    					Living and dining area, one bedroom and one bathroom<br>
+Fully equipped kitchenette<br>
+独立的全配套厨房
+    				</div>
+    			</div>
+    			<div class="mui-row item-detail">
+    				<div class="mui-col-sm-2 mui-col-xs-2">
+    						<img src="images/main/room2.png" width=24 />
+    				</div>
+    				<div class="mui-col-sm-10 mui-col-xs-10">
+    					<span>Japanese-style bidet in master bathroom</span><br>
+    					主浴室附有日式卫浴设备
+    				</div>
+    			</div>
+    			<div class="mui-row item-detail">
+    				<div class="mui-col-sm-2 mui-col-xs-2">
+    						<img src="images/main/room3.png" width=24 />
+    				</div>
+    				<div class="mui-col-sm-10 mui-col-xs-10">
+    					<span>Master bathroom with bathtub. Guest bathroom with standing shower.</span><br>
+    					主浴室配置浴缸，客浴室配置淋浴房
+    				</div>
+    			</div>
+    			<div class="mui-row item-detail">
+    				<div class="mui-col-sm-2 mui-col-xs-2">
+    						<img src="images/main/room4.png" width=24 />
+    				</div>
+    				<div class="mui-col-sm-10 mui-col-xs-10">
+    					<span>Bed Type: Queen and double size, sofa bed</span><br>
+    					床型：大床，双人床及沙发床
+    				</div>
+    			</div>
+    			<div class="mui-row read-more">
+    				<div class="mui-col-sm-12 mui-col-xs-12"  onclick="showDetail('images/main/h4.jpg');">
+    					<a href="javascript:void(0);"  style="color:#fff;">查看平面图</a>
+    				</div>
+    			</div>
+	    </li>
+      <li class="mui-table-view-cell">
+	    		<div class="mui-row house-title">
+	    			<div class="mui-col-sm-8 mui-col-xs-8">
+	    				<span>Duplex – 225 sqm</span>
+	    				<span>复式</span>
+	    			</div>
+  	    			<div class="mui-col-sm-4 mui-col-xs-4 bg-grey">
+	    				<a href="http://cn.shama.com/xujiahui/1bedroom.aspx" target ="_blank" style="color:#fff;">BOOK NOW <img src="images/main/book1.png" style="float:left; margin-top:5px;margin-left:5px;"></a>
+	    			</div>
+	    		</div>
+    			<div class="mui-row item-detail">
+    				<div class="mui-col-sm-2 mui-col-xs-2">
+    					<img src="images/main/room1.png" width=24 />
+    				</div>
+    				<div class="mui-col-sm-10 mui-col-xs-10">
+    					<span>Apartment Highlights 客房亮点:</span><br>
+    					Living and dining area, one master bedroom, two guest bedroom, and three bathrooms<br>
+宽敞的客厅及餐厅区域，一个主卧及两个客卧室，三个浴室<br>
+Fully equipped kitchenette<br>
+独立的全配套厨房
+    				</div>
+    			</div>
+    			<div class="mui-row item-detail">
+    				<div class="mui-col-sm-2 mui-col-xs-2">
+    						<img src="images/main/room2.png" width=24 />
+    				</div>
+    				<div class="mui-col-sm-10 mui-col-xs-10">
+    					<span>Japanese-style bidet in master bathroom</span><br>
+    					主浴室附有日式卫浴设备
+    				</div>
+    			</div>
+    			<div class="mui-row item-detail">
+    				<div class="mui-col-sm-2 mui-col-xs-2">
+    						<img src="images/main/room3.png" width=24 />
+    				</div>
+    				<div class="mui-col-sm-10 mui-col-xs-10">
+    					<span>Master bathroom with bathtub. Guest bathroom with standing shower</span><br>
+    					主浴室配置浴缸，两个客浴室配置淋浴房
+    				</div>
+    			</div>
+    			<div class="mui-row item-detail">
+    				<div class="mui-col-sm-2 mui-col-xs-2">
+    						<img src="images/main/room4.png" width=24 />
+    				</div>
+    				<div class="mui-col-sm-10 mui-col-xs-10">
+    					<span>BBed Type: Queen, double and single size</span><br>
+    					床型：大床，双人床及单人床
+    				</div>
+    			</div>
+    			<div class="mui-row read-more">
+    				<div class="mui-col-sm-12 mui-col-xs-12" onclick="showDetail('images/main/h5.jpg');">
+    					<a href="javascript:void(0);"  style="color:#fff;">查看平面图</a>
+    				</div>
+    			</div>
+	    </li>
+	</ul>
+</div>
+
+<div id="popover" class="mui-popover">
+    <ul class="mui-table-view">
+       <li class="mui-table-view-cell"><a href="house.html">Two bedroom - 100 sqm <br>二房-110平米</a></li>
+       <li class="mui-table-view-cell"><a href="house.html">Three bedroom - 128 sqm <br>三房-128平米</a></li>
+       <li class="mui-table-view-cell"><a href="house.html">Three bedroom - 128 sqm <br>复式</a></li>
+       <li class="mui-table-view-cell"><a href="house.html">Three bedroom - 128 sqm <br>复式</a></li>
+       <li class="mui-table-view-cell"><a href="house.html">Three bedroom - 128 sqm <br>复式</a></li>
+    </ul>
+</div>
+
+<div id ="detail-html">
+  <div class="contactMain">
+    <div class="mainBox">
+      <div class="close">
+        <img src="images/main/close.png" onClick="$('#detail-html').fadeOut();$('.shadow').fadeOut()">
+      </div>
+      <img src="" id="pic" width="100%" />
+      <div class="clear"> </div>
+    </div>
+  </div>
+</div>
+<div class="shadow"></div>
+</body>
+<script>
+	function showDetail(src){
+    $('#pic').attr('src',src)
+    $('#detail-html').css('top', -10000);
+    $('.shadow').show();
+    $('#detail-html').show(10,function(){
+      setTimeout(function(){
+        var top = ($(window).height() - $('#detail-html').height()) / 2;
+        $('#detail-html').css('top', top-20);
+      },200);
+    });
+
+
+	}
+
+	mui("#tab-bottom").on("tap","a",function(event){
+		var id = this.getAttribute('v');
+		if(id==1){
+			window.location.href="index.html";
+		}else if(id==2){
+			mui('.mui-popover').popover('toggle',document.getElementById("popover-btn"));
+     $('body,html').animate({ scrollTop: 0 }, 200, null ,function() {
+        mui('.mui-popover').popover('toggle',document.getElementById("popover-btn"));
+     });
+		}else if(id==3){
+			window.location.href="service.html";
+		}else if(id==4){
+			window.location.href="member.html";
+		}
+	});
+</script>
+</html>

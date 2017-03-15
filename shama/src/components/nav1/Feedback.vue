@@ -1,0 +1,344 @@
+<template>
+	<section>
+		<!--工具条-->
+		<el-col :span="24" class="toolbar">
+			<el-form :inline="true" :model="formInline" class="demo-form-inline">
+				<el-form-item>
+					<el-input v-model="formInline.keywords" placeholder="关键词"></el-input>
+				</el-form-item>
+				<el-form-item>
+					<el-button v-on:click="search">查询</el-button>
+				</el-form-item>
+			</el-form>
+		</el-col>
+
+		<!--列表-->
+		<template>
+			<el-table :data="tableData" highlight-current-row v-loading="listLoading" style="width: 100%;">
+				<el-table-column type="index" width="50">
+				</el-table-column>
+				<el-table-column prop="email" label="邮箱" sortable>
+				</el-table-column>
+				<el-table-column prop="member_id"  width="100"  label="会员id" sortable>
+				</el-table-column>
+				<el-table-column prop="_status" label="状态" width="100"  :formatter="formaterStatus" sortable>
+				</el-table-column>
+				<el-table-column prop="_content" label="备注" :formatter="formatText" sortable>
+				</el-table-column>
+				<el-table-column prop="created_at" label="时间" :formatter="formatDate" width="160" sortable>
+				</el-table-column>
+				<el-table-column inline-template :context="_self" label="操作" width="150">
+					<span>
+						<el-button type="text" size="small" @click="handleDetail(row)">查看</el-button>
+						<el-button :id="tableData.id" type="text" size="small" @click="handleDel(row)">删除</el-button>
+					</span>
+				</el-table-column>
+			</el-table>
+		</template>
+
+		<!--分页-->
+		<el-col :span="24" class="toolbar" style="padding-bottom:10px;">
+			<el-pagination @size-change="handleSizeChange"
+ @current-change="handleCurrentChange" :current-page="1" :page-sizes="[10, 20, 30, 40]" :page-size="10" layout="total, prev, pager, next, jumper"
+				:total="total" style="float:right">
+			</el-pagination>
+		</el-col>
+
+		<el-dialog :title="detailFormTtile" v-model="detailFormVisible" :close-on-click-modal="false">
+			<table >
+				<tr><td>邮箱：</td><td>{{detailData.email}}</td></tr>
+				<tr><td>内容：</td><td>{{detailData.content}}</td></tr>
+				<tr><td>时间：</td><td>{{detailData.created_at}}</td></tr>
+			</table>
+		</el-dialog>
+
+		<!--编辑界面-->
+		<el-dialog :title="editFormTtile" v-model="editFormVisible" :close-on-click-modal="false" size="large" >
+			<el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm">
+
+				<el-form-item label="审核" prop="status">
+					<el-radio-group v-model="editForm.status">
+					    <el-radio :label="0">未处理</el-radio>
+					    <el-radio :label="1">通过</el-radio>
+					    <el-radio :label="2">忽略</el-radio>
+					</el-radio-group>
+				</el-form-item>
+				<el-form-item label="名称" prop="name">
+					<el-input placeholder="请输入内容" v-model="editForm.name"></el-input>
+				</el-form-item>
+				<el-form-item label="备注" prop="message">
+					<el-input type="textarea" v-model="editForm.message"></el-input>
+				</el-form-item>
+				<el-form-item label="内容" prop="content">
+					<ckeditor v-model="editForm.content" :id="editorA" :height="'300px'" :toolbar="[['Format']]"></ckeditor>
+				</el-form-item>
+			</el-form>
+			<div slot="footer" class="dialog-footer">
+				<el-button @click.native="editFormVisible = false">取 消</el-button>
+				<el-button type="primary" @click="editSubmit" :loading="editLoading">{{btnEditText}}</el-button>
+			</div>
+		</el-dialog>
+	</section>
+</template>
+
+
+<script>
+	import util from '../../common/util'
+	import NProgress from 'nprogress'
+	import Ckeditor from '../ckeditor.vue'
+  	export default {
+	  	components: {
+			Ckeditor
+		},
+	    data() {
+			return {
+				ordersDetailUrl:function (obj){
+					return 'http://shama.jcjever.com/feedbacks?page=1&active_id='+obj.id;
+				},
+				DetailUril: (obj) => {
+					if(obj.id){
+						return 'http://shama.jcjever.com/feedbacks/'+obj.id;
+					}else{
+						return 'http://shama.jcjever.com/feedbacks';
+					}
+				},
+		  		ListUrl: function (obj){
+	  				if(!obj.page)
+	  					obj.page = 1;
+	  				if(!obj.keywords)
+	  					obj.keywords = '';
+	  				return 'http://shama.jcjever.com/feedbacks?page=' + obj.page + '&keywords=' + obj.keywords;
+				},
+				formInline: {
+					keywords: ''
+				},
+				pickerOptions0: {
+					disabledDate(time) {
+						return time.getTime() < Date.now() - 8.64e7;
+					}
+				},
+				value1:'',
+				editFormVisible:false,//编辑界面显是否显示
+				detailFormVisible:false,//编辑界面显是否显示
+				editFormTtile:'编辑',//编辑界面标题
+				detailFormTtile:'详情',
+				editorA: 'editor-a',
+				//编辑界面数据
+				editForm: {
+					id:0,
+					status: 0,
+					message: ''
+				},
+				editLoading:false,
+				btnEditText:'提 交',
+				editFormRules:{
+					message:[
+						{ required: true, message: '请输入备注', trigger: 'blur' }
+					]
+				},
+				tableData: [],
+				detailData:{
+					content:'111'
+				},
+				total:0,
+				listLoading:false
+	     	};
+	    },
+		mounted: function (){
+			this.loadData({page:1});
+		},
+	    methods: {
+   			search(){
+    			this.loadData({keywords:this.formInline.keywords});
+    		},
+			handleCurrentChange(val) {
+				this.currentPage = val;
+				console.log(`当前页: ${val}`);
+				this.loadData({page:this.currentPage,keywords:this.formInline.keywords});
+			},
+			handleSizeChange(val) {
+			   console.log(`每页 ${val} 条`);
+			},
+			requestError:function(response) {
+	            this.$notify.error({
+	              title: '提示',
+	              message: response.body.message
+	            });
+	        },
+			update(obj){
+				this.$http.put(this.DetailUril(obj),obj).then((response) => {
+					console.log('update success');
+				}).catch(this.requestError);
+			},
+			removeData(obj){
+				this.$http.delete(this.DetailUril(obj)).then((response) => {
+					console.log('remove success');
+				}).catch(this.requestError);
+			},
+			insert(obj,callback){
+				this.$http.post(this.DetailUril(obj),obj).then((response) => {
+					console.log('insert success');
+					callback(response);
+				}).catch(this.requestError);
+			},
+			loadData(obj){
+				this.$http.get(this.ListUrl(obj)).then((response) => {
+				 	this.tableData = response.body.data;
+					this.total = response.body.total;
+				}).catch(this.requestError);
+			},
+				//性别显示转换
+			formatDate:function(row,column){
+				if(row.created_at){
+					return row.created_at = row.created_at.substring(0,10);
+				}
+			},
+			formatText:function(row,column){
+				row._content = row.content;
+				if(row.content&&row.content.length>10){
+					row._content = row.content.substring(0,15)+"...";
+				}
+				return row._content;
+			},
+			formaterStatus:function (row,column){
+				switch(row.status){
+					case 0:
+						row._status='未处理';
+						break;
+					case 1:
+						row._status='通过';
+						break;
+					case 2:
+						row._status='忽略';
+						break;
+				}
+				return row._status;
+			},
+   			handleDetail:function(row){
+				this.detailFormVisible=true;
+				//this.detailData = this.loadDetail(row.id);
+				this.detailData.email = row.email;
+				this.detailData.content = row.content;
+				this.detailData.created_at = row.created_at;
+			},
+			loadDetail:function(id){
+				this.$http.get(this.ordersDetailUrl({id:id})).then((response) => {
+				 	this.detailData = response.body.data;
+				}).catch(this.requestError);
+			},
+			//删除记录
+   			handleDel:function(row){
+				//console.log(row);
+				var _this=this;
+				this.$confirm('确认删除该记录吗?', '提示', {
+					//type: 'warning'
+				}).then(() => {
+					_this.listLoading=true;
+					NProgress.start();
+					setTimeout(function(){
+						_this.removeData({id:row.id});
+						for(var i=0;i<_this.tableData.length;i++){
+							if(_this.tableData[i].id==row.id){
+								_this.tableData.splice(i,1);
+								_this.listLoading=false;
+								NProgress.done();
+								_this.$notify({
+									title: '成功',
+									messphone: '删除成功',
+									type: 'success'
+								});
+
+								break;
+							}
+						}
+					},1000);
+				}).catch(() => {
+
+				});
+			},
+			//显示编辑界面
+   			handleEdit:function(row){
+				console.log(row.status);
+				this.editFormVisible=true;
+				this.editFormTtile='编辑';
+				this.editForm.id=row.id;
+				this.editForm.content=row.content;
+			},
+			//编辑 or 新增
+   			editSubmit:function(){
+				var _this=this;
+				//console.log(_this.$refs.editForm);
+				_this.$refs.editForm.validate((valid)=>{
+					console.log(valid);
+					if(valid){
+						_this.$confirm('确认提交吗？','提示',{}).then(()=>{
+							_this.editLoading=true;
+							NProgress.start();
+							_this.btnEditText='提交中';
+							setTimeout(function(){
+								console.log(_this.editForm.id);
+								if(0 == _this.editForm.id){
+									_this.insert({id:_this.editForm.id,name:_this.editForm.name,status:_this.editForm.status,message:_this.editForm.message,content:_this.editForm.content},function(response){
+										_this.tableData.push({
+											id:new Date().getTime(),
+											name:_this.editForm.name,
+											status:_this.editForm.status,
+											message:_this.editForm.message,
+											created_at:response.body.active.created_at
+										})
+									});
+								}else{
+									_this.update({id:_this.editForm.id,name:_this.editForm.name,status:_this.editForm.status,message:_this.editForm.message,content:_this.editForm.content});
+								}
+
+								_this.editLoading=false;
+								NProgress.done();
+								_this.btnEditText='提 交';
+								_this.$notify({
+									title: '成功',
+									messphone: '提交成功',
+									type: 'success'
+								});
+								_this.editFormVisible = false;
+								if(_this.editForm.id==0){
+									//新增
+
+								}else{
+									//编辑
+									for(var i=0;i<_this.tableData.length;i++){
+										if(_this.tableData[i].id==_this.editForm.id){
+											_this.tableData[i].name=_this.editForm.name;
+											_this.tableData[i].status=_this.editForm.status;
+											_this.tableData[i].message=_this.editForm.message;
+											console.log(_this.editForm.status);
+											console.log(_this.editForm.message);
+											break;
+										}
+									}
+								}
+							},1000);
+						});
+					}
+				});
+			},
+			//显示新增界面
+   			handleAdd:function(){
+				var _this=this;
+				this.editFormVisible=true;
+				this.editFormTtile='新增';
+				this.editForm.id=0;
+			}
+		}
+	}
+</script>
+
+<style scoped>
+	.toolbar .el-form-item {
+		margin-bottom: 10px;
+	}
+
+	.toolbar {
+		background: #fff;
+		padding: 10px 10px 0px 10px;
+	}
+</style>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/main.css" rel="stylesheet" />
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HR3RRyTsXYdQ3QzzG5yUkg0q"></script>
+    <script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+<a href="index.html"><span class="mui-icon mui-icon-arrowleft" ></span></a>
+<h1 class="mui-title">意见反馈</h1>
+<a href="feed-back.html"><img  class="mui-pull-right" width=24 style="margin-top:8px;" src="images/main/msg-ico.png"></a>
+</header>
+
+
+<div class="mui-content">
+  <div id="feedBack">
+  	<form class="">
+      <div class="title">
+  			We will be much appreciated with your value comments with us:
+  		</div>
+  	    <div class="mui-input-row">
+  		    <textarea type="text" class="mui-input-clear" placeholder=""></textarea>
+  	    </div>
+  	    <div class="title">
+  			请输入您的邮箱地址：
+  		</div>
+  	    <div class="mui-input-row">
+  	        <input placeholder="">
+  	    </div>
+  	    <div class="mui-button-row">
+  	        <button type="button" onclick="submit_feed_back()" class="mui-btn mui-btn-info" >SUBMIT</button>
+  	    </div>
+  	</form>
+</div>
+</body>
+<script>
+  function submit_feed_back(){
+     mui.toast('提交成功',{ duration:'short', type:'div' }) 
+  }
+</script>
+</html>

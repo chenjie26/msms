@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/main.css" rel="stylesheet" />
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HR3RRyTsXYdQ3QzzG5yUkg0q"></script>
+    <script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+<a href="member-register.html"><span class="mui-icon mui-icon-arrowleft" ></span></a>
+<h1 class="mui-title">注册（2/2）</h1>
+<a href="feed-back.html"><img  class="mui-pull-right" width=24 style="margin-top:8px;" src="images/main/msg-ico.png"></a>
+</header>
+
+<div class="mui-content">
+	<form class="mui-input-group">
+		<div class="mui-input-row">
+	        <label><span class="mui-icon mui-icon-phone"></span></label>
+	    		<input type="text" class="mui-input-clear" placeholder="请填写姓名">
+	    </div>
+	    <div class="mui-row">
+	    		<div class="mui-col-sm-6 mui-col-xs-6">
+	    			<div class="mui-input-row mui-radio mui-left">
+			        <label>男</label>
+					<input name="radio1" type="radio">
+			    </div>
+	    		</div>
+	    		<div class="mui-col-sm-6 mui-col-xs-6">
+	    			<div class="mui-input-row mui-radio mui-left">
+			        <label>女</span></label>
+					<input name="radio1" type="radio">
+			    </div>
+	    		</div>
+	    		
+	    </div>
+	    <div class="mui-row">
+		    	<div class="mui-col-sm-6 mui-col-xs-6">
+	    			<div class="mui-input-row mui-radio mui-left">
+			        <label>11号楼</label>
+					<input name="radio2" type="radio">
+			    </div>
+	    		</div>
+	    		<div class="mui-col-sm-6 mui-col-xs-6">
+	    			<div class="mui-input-row mui-radio mui-left">
+			        <label>12号楼</span></label>
+					<input name="radio2" type="radio">
+			    </div>
+	    		</div>
+	    </div>
+	    
+	    <div class="mui-input-row">
+	        <label><span class="mui-icon mui-icon-locked"></span></label>
+	        <input type="password" class="mui-input-password" placeholder="房间号">
+	    </div>
+	    <div class="mui-input-row">
+	        <label><span class="mui-icon mui-icon-locked"></span></label>
+	        <input type="password" class="mui-input-password" placeholder="手机号">
+	    </div>
+	    <div class="mui-button-row">
+	        <a onclick="register()" href="#member-register-last.html">完成注册</a>
+	    </div>
+	</form>
+</div>
+</body>
+<script>
+	function register(){
+		mui.confirm('注册完成','提示','进入用户中心',function(){
+			window.location.href="member.html";
+		})
+	}
+</script>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+    <title></title>
+    <script src="js/mui.min.js"></script>
+    <link href="css/mui.min.css" rel="stylesheet"/>
+    <link href="css/main.css" rel="stylesheet" />
+    <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=HR3RRyTsXYdQ3QzzG5yUkg0q"></script>
+    <script type="text/javascript" src="http://developer.baidu.com/map/jsdemo/demo/convertor.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      	mui.init();
+    </script>
+</head>
+<body>
+<header class="mui-bar mui-bar-nav">
+<a href="index.html"><span class="mui-icon mui-icon-arrowleft" ></span></a>
+<h1 class="mui-title">活动</h1>
+<a href="feed-back.html"><img  class="mui-pull-right" width=24 style="margin-top:8px;" src="images/main/msg-ico.png"></a>
+</header>
+
+<nav class="mui-bar mui-bar-tab" id="tab-bottom">
+  	<a class="mui-tab-item mui-active" v=1 href="#tabbar" >
+		<img src="images/main/jianjie.png" >
+		<span class="mui-tab-label" >简介</span>
+	</a>
+	<a class="mui-tab-item" id="popover-btn"  v=2 href="#tabbar-with-chat">
+		<img src="images/main/yuding.png" >
+		<span class="mui-tab-label">预定</span>
+	</a>
+	<a class="mui-tab-item"  v=3 href="#tabbar-with-sms">
+		<img src="images/main/fuwu.png" >
+		<span class="mui-tab-label">服务</span>
+	</a>
+	<a class="mui-tab-item"  v=4 href="#tabbar-with-map">
+		  <img src="images/main/huiyuan.png" >
+		<span class="mui-tab-label">微会员</span>
+	</a>
+</nav>
+
+<div class="mui-content">
+	<div class="mui-row">
+		<div class="mui-col-sm-12 mui-col-xs-12">
+				<div class="mui-card">
+					<div class="mui-card-header">活动标题 2017-01-25 ...</div>
+					<div class="mui-card-content"><img src="images/main/house.png" width="100%">活动内容活动内容活动内容活动内容活动内容活动内容...<a href="">read more</a></div>
+					<div class="mui-card-footer">报名</div>
+				</div>
+				<div class="mui-card">
+					<div class="mui-card-header">活动标题 2017-01-25 ...</div>
+					<div class="mui-card-content"><img src="images/main/house.png" width="100%">活动内容活动内容活动内容活动内容活动内容活动内容...<a href="">read more</a></div>
+					<div class="mui-card-footer">报名</div>
+				</div>
+				<div class="mui-card">
+					<div class="mui-card-header">活动标题 2017-01-25 ...</div>
+					<div class="mui-card-content"><img src="images/main/house.png" width="100%">活动内容活动内容活动内容活动内容活动内容活动内容...<a href="">read more</a></div>
+					<div class="mui-card-footer">报名</div>
+				</div>
+		</div>
+	</div>
+</div>
+</body>
+<script>
+	function about(){
+		mui.alert('公司简介<br>2','公司简介',1,null);
+	}
+	function contact(){
+		mui.alert('联系方式<br>1','联系方式',1,null);
+	}
+	mui("#tab-bottom").on("tap","a",function(event){
+		var id = this.getAttribute('v');
+		if(id==1){
+			window.location.href="index.html";
+		}else if(id==2){
+			mui('.mui-popover').popover('toggle',document.getElementById("popover-btn"));
+ $('body,html').animate({ scrollTop: 0 }, 200, null ,function() {
+    mui('.mui-popover').popover('toggle',document.getElementById("popover-btn"));
+ });
+		}else if(id==3){
+			window.location.href="service.html";
+		}else if(id==4){
+			window.location.href="member.html";
+		}
+	});
+</script>
+</html>
