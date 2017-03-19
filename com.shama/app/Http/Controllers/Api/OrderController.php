@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http;
 
 class OrderController extends Controller
 {
@@ -37,5 +39,10 @@ class OrderController extends Controller
 
         return $paginate;
 
+    }
+
+    public function withDetails(Request $request)
+    {
+        return Order::with('details.serviceDetail', 'user')->get();
     }
 }

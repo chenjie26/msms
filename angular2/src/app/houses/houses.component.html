@@ -1,0 +1,64 @@
+<header class="mui-bar mui-bar-nav">
+    <a href="index.html"><span class="mui-icon mui-icon-arrowleft" ></span></a>
+    <h1 class="mui-title">ROOM TYPES</h1>
+    <a href="feed-back.html"><img  class="mui-pull-right" width=24 style="margin-top:8px;" src="../../assets/images/main/msg-ico.png"></a>
+</header>
+
+<div class="mui-content">
+    <ul class="mui-table-view" id="house-list">
+        <li *ngFor="let house of houses" class="mui-table-view-cell">
+            <div><img src="../../assets/images/main/house.png" style="display:block" width="100%"></div>
+            <div class="mui-row house-title">
+                <div class="mui-col-sm-8 mui-col-xs-8">
+                    <span>{{house.en_name}}</span>
+                    <span>{{house.name}}</span>
+                </div>
+                <div class="mui-col-sm-4 mui-col-xs-4">
+                    <a href="{{house.link}}" target ="_blank" style="color:#fff;">BOOK NOW <img src="../../assets/images/main/book.png" style="float:left; margin-top:5px;margin-left:5px;"></a>
+                </div>
+            </div>
+            <div class="mui-row item-detail">
+                <div class="mui-col-sm-2 mui-col-xs-2">
+                    <img src="../../assets/images/main/room1.png" width=24 />
+                </div>
+                <div class="mui-col-sm-10 mui-col-xs-10">
+                    <span>Apartment Highlights 客房亮点:</span><br>
+                    {{house.light_point}}
+                </div>
+            </div>
+            <div class="mui-row item-detail">
+                <div class="mui-col-sm-2 mui-col-xs-2">
+                    <img src="../../assets/images/main/room2.png" width=24 />
+                </div>
+                <div class="mui-col-sm-10 mui-col-xs-10">
+                    <span>Japanese-style bidet in master bathroom</span><br>
+                    {{house.bathroom}}
+                </div>
+            </div>
+            <div class="mui-row item-detail">
+                <div class="mui-col-sm-2 mui-col-xs-2">
+                    <img src="../../assets/images/main/room3.png" width=24 />
+                </div>
+                <div class="mui-col-sm-10 mui-col-xs-10">
+                    <span>Master bathroom with bathtub. Guest bathroom with standing shower.</span><br>
+                    {{house.bathtub}}
+                </div>
+            </div>
+            <div class="mui-row item-detail">
+                <div class="mui-col-sm-2 mui-col-xs-2">
+                    <img src="../../assets/images/main/room4.png" width=24 />
+                </div>
+                <div class="mui-col-sm-10 mui-col-xs-10">
+                    <span>Bed Type: Queen and double size, sofa bed</span><br>
+                    床型：{{house.bed}}
+                </div>
+            </div>
+            <div class="mui-row read-more">
+                <div class="mui-col-sm-12 mui-col-xs-12"  onclick="showDetail('../../assets/images/main/h1.jpg');">
+                    <a href="javascript:void(0);"  style="color:#fff;">查看平面图</a>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+

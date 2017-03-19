@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http;
 
 class ServiceController extends Controller
 {
@@ -15,5 +17,10 @@ class ServiceController extends Controller
 
     public function getPerPage(){
         return 10;
+    }
+
+    public function withDetails(Request $request)
+    {
+        return Service::with('details')->get();
     }
 }

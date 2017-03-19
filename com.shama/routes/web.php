@@ -44,6 +44,7 @@ $api->version('v1', function ($api) {
             $api->delete('/houses/{id}','HouseController@_del');
 
             $api->get('/orders','OrderController@_list');
+            $api->get('/ordersWithDetails','OrderController@withDetails');
             $api->get('/orders/{id}','OrderController@_detail');
             $api->post('/orders','OrderController@_add');
             $api->put('/orders/{id}','OrderController@_edit');
@@ -56,6 +57,7 @@ $api->version('v1', function ($api) {
             $api->delete('/feedbacks/{id}','FeedbackController@_del');
 
             $api->get('/services','ServiceController@_list');
+            $api->get('/servicesWithDetails','ServiceController@withDetails');
             $api->get('/services/{id}','ServiceController@_detail');
             $api->post('/services','ServiceController@_add');
             $api->put('/services/{id}','ServiceController@_edit');
@@ -97,7 +99,7 @@ $api->version('v1', function ($api) {
             $api->put('/member_actives/{id}','MemberActiveController@_edit');
             $api->delete('/member_actives/{id}','MemberActiveController@_del');
 
-            $api->get('/order_detail','OrderDetailController@_list');
+            $api->get('/order_details','OrderDetailController@_list');
             $api->get('/order_detail/{id}','OrderDetailController@_detail');
             $api->post('/order_detail','OrderDetailController@_add');
             $api->put('/order_detail/{id}','OrderDetailController@_edit');
