@@ -22,7 +22,7 @@ import { CommonModule } from '@angular/common';
 
 export class ServicesComponent implements OnInit{
 
-    aservices: ServiceService[] = [];
+    services: ServiceService[] = [];
     details: ServiceDetail[] = [];
 
     constructor(private serviceService: ServiceService) {
@@ -34,7 +34,7 @@ export class ServicesComponent implements OnInit{
 
     private loadAllServices() {
         this.serviceService.getAll().subscribe(aservices => {
-            this.aservices = aservices.services;
+            this.services = aservices.services;
             if (aservices.services.length > 0) {
                 this.details = aservices.services[0].details;
             }

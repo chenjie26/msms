@@ -16,13 +16,13 @@
                 <li class="mui-table-view-cell ">
                     <div class="mui-clearfix"></div>
                     <ul class="mui-table-view list-white">
-                        <li *ngFor="let order of orders | filter : 'status' : 0" class="mui-table-view-cell">
+                        <li *ngFor="let order of orders | filter : 'status' : 1" class="mui-table-view-cell">
                             <div class="mui-row">
                                 <div class="mui-col-sm-6 mui-col-xs-6">
-                                    今天 21:31
+                                    {{order.created_at | date: 'yyyy/MM/dd'}}
                                 </div>
                                 <div class="mui-col-sm-6 mui-col-xs-6">
-                                    <span >合计：2项服务订单</span>
+                                    <span >合计：{{order.details.length}}项服务订单</span>
                                 </div>
                             </div>
                         </li>
@@ -32,15 +32,15 @@
                 <li class="mui-table-view-cell title-blue">
                     已预订订单 <span class="mui-icon mui-icon-arrowright mui-pull-right"></span>
                 </li>
-                <li class="mui-table-view-cell " style="display:none">
+                <li class="mui-table-view-cell ">
                     <ul class="mui-table-view list-white">
                         <li *ngFor="let order of orders | filter : 'status' : 0" class="mui-table-view-cell">
                             <div class="mui-row">
                                 <div class="mui-col-sm-6 mui-col-xs-6">
-                                    今天 21:31
+                                    {{order.created_at | date: 'yyyy/MM/dd'}}
                                 </div>
                                 <div class="mui-col-sm-6 mui-col-xs-6">
-                                    <span >合计：2项服务订单</span>
+                                    <span >合计：{{order.details.length}}项服务订单</span>
                                 </div>
                             </div>
                         </li>

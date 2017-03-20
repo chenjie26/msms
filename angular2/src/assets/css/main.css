@@ -189,8 +189,18 @@ ul{
 	border-radius: 15px;
 }
 #about-html{
-	display: none;
+	/*display: none;*/
 	position:absolute;
+	top:10px;
+	z-index:4000;
+	background:#fff;
+	margin:5%;
+	width: 90%;
+	box-shadow: 1px 1px 8px #aaa;
+	border-radius: 15px;
+}
+.my-pop-over {
+	/*position:absolute;*/
 	top:10px;
 	z-index:4000;
 	background:#fff;

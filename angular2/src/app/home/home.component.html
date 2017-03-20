@@ -26,7 +26,7 @@
 
     <div  id="nav-index">
         <div class="mui-row container">
-            <div class="mui-col-xs-4" onclick="contact()">
+            <div class="mui-col-xs-4" (click)="popOverAbout.toggle($event)">
 		 	<span class="mui-icon ">
 		 		<img src="../../assets/images/main/phoneIcon.png" />
 		 	</span>
@@ -34,15 +34,15 @@
             </div>
             <div class="mui-col-xs-4">
 	     	<span class="mui-icon">
-	     		<a href="house.html"><img src="../../assets/images/main/introIcon.png" /></a>
+	     		<a routerLink="/houses"><img src="../../assets/images/main/introIcon.png" /></a>
 	     	</span>
                 <span class="mui-tab-label">房屋介绍</span>
             </div>
-            <div class="mui-col-xs-4" onclick="about()">
+            <div class="mui-col-xs-4" (click)="popOverDesc.toggle($event)">
 	     	<span class="mui-icon">
 	     		<img src="../../assets/images/main/srbIcon.png" />
 	     	</span>
-                <span class="mui-tab-label" >公司简介</span>
+                <span class="mui-tab-label">公司简介</span>
             </div>
 
         </div>
@@ -57,41 +57,115 @@
     </div>
 </div>
 
-<div id ="about-html">
-
-    <div class="contactMain">
-        <div class="mainBox">
-            <div class="close">
-                <img src="../../assets/images/main/close.png" onClick="$('#about-html').fadeOut();$('.shadow').fadeOut()">
+<pop-over
+        #popOverAbout [my]="'center middle'" [at]="'center middle'"
+        [anchor-to]="true" [x-offset]="5" [y-offset]="5">
+    <div class="my-pop-over" >
+        <div class="contactMain">
+            <div class="mainBox">
+                <div class="close">
+                    <img src="../../assets/images/main/close.png" (click)="popOverAbout.toggle($event)">
+                </div>
+                <ul class="main" style="margin-bottom:20px;">
+                    <li class="icon">
+                        <img src="../../assets/images/main/positionIcon.png" >
+                    </li>
+                    <li class="text">
+                        <h2 class="fTitleEn">Contact us:</h2>
+                        <p  class="fEn">
+                            Tower 11 & 12, Novel Century, 81 Xin Geng
+                            Road, Xuhui District, Shanghai 200030, China
+                        </p>
+                        <h2 class="fTitleCn">联系我们：</h2>
+                        <p  class="fCn">
+                            中国上海徐汇区辛耕路81弄永新世纪11和12号楼，邮编：200030
+                        </p>
+                    </li>
+                </ul>
+                <div class="clear"></div>
+                <ul class="main" style="margin-bottom:20px;">
+                    <li class="icon">
+                        <img src="../../assets/images/main/pIcon.png">
+                    </li>
+                    <li class="text">
+                        <span class="fTitleEn" style="border-right: 1px dotted #dbdbdb;padding-right: 10px;">Tel</span>
+                        <span class="fTitleCn">电话：</span>
+                        <span  class="fCn">
+            +86 21 2411 8888
+          </span>
+                    </li>
+                </ul>
+                <div class="clear"></div>
+                <ul class="main" style="margin-bottom:20px;">
+                    <li class="icon">
+                        <img src="../../assets/images/main/faxIcon.png">
+                    </li>
+                    <li class="text">
+                        <span class="fTitleEn" style="border-right: 1px dotted #dbdbdb;padding-right: 10px;">Fax</span>
+                        <span class="fTitleCn">传真：</span>
+                        <span  class="fCn">
+            +86 21 2411 8801
+          </span>
+                    </li>
+                </ul>
+                <div class="clear"></div>
+                <ul class="main" style="padding-bottom:30px;">
+                    <li class="icon">
+                        <img src="../../assets/images/main/earthIcon.png">
+                    </li>
+                    <li class="text">
+                        <span class="fTitleEn" style="border-right: 1px dotted #dbdbdb;padding-right: 10px;">Net</span>
+                        <span class="fTitleCn">网址：</span>
+                        <span  class="fCn">www.shama.com</span>
+                    </li>
+                </ul>
+                <div class="clear"></div>
             </div>
-            <ul class="main" style="padding-bottom:30px;">
-                <li class="">
-                    <div class="fTitleEn">
-                        Shama Xujiahui, Shanghai
-                    </div>
-                    <div class="fTitleCn">
-                        上海徐家汇莎玛
-                    </div>
-                    <p class="fEn">
-                        Filled with quaint boutiques, bustling markets and colourful department stores, modern Xujiahui is Shanghai&rsquo;s favourite shopping destination, particularly when searching for technology&rsquo;s latest offering. The neighbourhood presents other charms too such as St. Ignatius Cathedral, an important emblem of the city&rsquo;s Jesuit past and Xujiahui Park, an impressive urban playground filled with lush greenery and boasting its own meandering brook.
-                        <br/>
-                        Shama Xujiahui offers 110 apartments with one to three bedroom and duplex layouts and a fitness centre, surrounded by an array of restaurants, bars, and other essential amenities, and a mere block away from Xujiahui station on the city&rsquo;s Metro Line 1, Line 9 and Line 11. Shama Xujiahui offers tenants a haven of contemporary design and chic simplicity to retreat from the area&rsquo;s excitement.
-                    </p>
-
-                    <p class="fCn" style="">
-                        上海徐家汇坐拥众多高端商铺，地段繁华，百货大楼林立，极具现代化气息，颇受钟爱最新科技产品消费者的欢迎。徐家汇毗邻上海最负盛名的天主教堂&mdash;徐家汇大教堂和上海 都市绿地&mdash;徐家汇公园，花木流水，相得益彰。
-                        <br/>
-                        莎玛上海在徐家汇推出了110套豪华公寓，有一房至三房多种选择，装修时尚，并配有室内健身 房。莎玛徐家汇周边拥有众多餐馆、酒吧及其它必需娱乐设施，距离上海地铁1号线, 9号线及11号线徐家汇站仅 咫尺之遥。莎玛徐家汇将让您全面体验现代设计理念和简约精致设计风格。
-                    </p>
-                    <img src="../../assets/images/main/map.png" width="100%">
-                </li>
-
-            </ul>
-            <div class="clear"> </div>
-        </div>
-
-        <div class="netBtn" onClick="window.open('http://cn.shama.com/xujiahui/')">
-            <img src="../../assets/images/main/home.png" width="150">
+            <div class="netBtn" onClick="$('#contact-html').fadeOut();$('#about-html').fadeIn();">
+                <img src="../../assets/images/main/about.png" width="150">
+            </div>
         </div>
     </div>
-</div>
+</pop-over>
+
+<pop-over
+        #popOverDesc [my]="'center middle'" [at]="'center middle'"
+        [anchor-to]="true" [x-offset]="5" [y-offset]="5">
+    <div class="my-pop-over" >
+        <div class="contactMain">
+            <div class="mainBox">
+                <div class="close">
+                    <img src="../../assets/images/main/close.png" (click)="popOverDesc.toggle($event)">
+                </div>
+                <ul class="main" style="padding-bottom:30px;">
+                    <li class="">
+                        <div class="fTitleEn">
+                            Shama Xujiahui, Shanghai
+                        </div>
+                        <div class="fTitleCn">
+                            上海徐家汇莎玛
+                        </div>
+                        <p class="fEn">
+                            Filled with quaint boutiques, bustling markets and colourful department stores, modern Xujiahui is Shanghai&rsquo;s favourite shopping destination, particularly when searching for technology&rsquo;s latest offering. The neighbourhood presents other charms too such as St. Ignatius Cathedral, an important emblem of the city&rsquo;s Jesuit past and Xujiahui Park, an impressive urban playground filled with lush greenery and boasting its own meandering brook.
+                            <br/>
+                            Shama Xujiahui offers 110 apartments with one to three bedroom and duplex layouts and a fitness centre, surrounded by an array of restaurants, bars, and other essential amenities, and a mere block away from Xujiahui station on the city&rsquo;s Metro Line 1, Line 9 and Line 11. Shama Xujiahui offers tenants a haven of contemporary design and chic simplicity to retreat from the area&rsquo;s excitement.
+                        </p>
+
+                        <p class="fCn" style="">
+                            上海徐家汇坐拥众多高端商铺，地段繁华，百货大楼林立，极具现代化气息，颇受钟爱最新科技产品消费者的欢迎。徐家汇毗邻上海最负盛名的天主教堂&mdash;徐家汇大教堂和上海 都市绿地&mdash;徐家汇公园，花木流水，相得益彰。
+                            <br/>
+                            莎玛上海在徐家汇推出了110套豪华公寓，有一房至三房多种选择，装修时尚，并配有室内健身 房。莎玛徐家汇周边拥有众多餐馆、酒吧及其它必需娱乐设施，距离上海地铁1号线, 9号线及11号线徐家汇站仅 咫尺之遥。莎玛徐家汇将让您全面体验现代设计理念和简约精致设计风格。
+                        </p>
+                        <img src="../../assets/images/main/map.png" width="100%">
+                    </li>
+
+                </ul>
+                <div class="clear"> </div>
+            </div>
+
+            <div class="netBtn" onClick="window.open('http://cn.shama.com/xujiahui/')">
+                <img src="../../assets/images/main/home.png" width="150">
+            </div>
+        </div>
+    </div>
+</pop-over>

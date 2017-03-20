@@ -5,3 +5,8 @@
 .help-block {
     font-size: 12px;
 }
+
+.pop-over-content {
+    z-index: 100;
+    background: none!important;
+}

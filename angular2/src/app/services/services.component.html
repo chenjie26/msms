@@ -10,7 +10,7 @@
     <div class="mui-row">
         <div class="mui-col-sm-4 mui-col-xs-4" id="service-left-container">
             <ul class="mui-table-view service-left">
-                <li  *ngFor="let service of aservices | filter : 'status' : 1" class="mui-table-view-cell" (click)="showDetails(service);">
+                <li  *ngFor="let service of services" class="mui-table-view-cell" (click)="showDetails(service);">
                     <div><img src="../../assets/images/main/s1.png" src1="../../assets/images/main/s11.png"/></div>
                     {{service.en_name}}<br>
                     {{service.name}}
