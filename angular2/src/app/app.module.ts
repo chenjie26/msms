@@ -1,4 +1,4 @@
-﻿import { NgModule, Pipe, PipeTransform }      from '@angular/core';
+﻿import { NgModule, Pipe, PipeTransform, }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }    from '@angular/forms';
 import { HttpModule } from '@angular/http';

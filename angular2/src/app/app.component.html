@@ -1,22 +1,36 @@
 ﻿
+<router-outlet></router-outlet>
 
-<nav class="mui-bar mui-bar-tab" id="tab-bottom">
-    <a class="mui-tab-item" id='bar1' href="#tabbar" routerLink="/">
-        <img src="../assets/images/main/jianjie1.png" >
-        <span class="mui-tab-label" >简介</span>
-    </a>
-    <a class="mui-tab-item" id="popover-btn" v=2 (click)="popOverReserve.toggle($event)">
-        <img src="../assets/images/main/yuding.png" >
-        <span class="mui-tab-label">预定</span>
-    </a>
-    <a class="mui-tab-item"  id='bar3' routerLink="/services" v=3 href="#tabbar-with-sms">
-        <img src="../assets/images/main/fuwu.png" >
-        <span class="mui-tab-label">服务</span>
-    </a>
-    <a class="mui-tab-item" id='bar4' routerLink="/orders" v=4 href="#tabbar-with-map">
-        <img src="../assets/images/main/huiyuan.png" >
-        <span class="mui-tab-label">微会员</span>
-    </a>
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <ul class="nav navbar-nav">
+            <li class="active">
+                <a class="mui-tab-item" (click)="toRouter('/')" href="#">
+                    <img src="../assets/images/main/jianjie1.png" (click)="toRouter('/')">
+                    <span class="mui-tab-label" (click)="toRouter('/')">简介</span>
+                </a>
+            </li>
+            <li>
+                <a class="mui-tab-item" v=2 (click)="popOverReserve.toggle($event)">
+                    <img src="../assets/images/main/yuding.png" >
+                    <span class="mui-tab-label">预定</span>
+                </a>
+            </li>
+            <li class="active">
+                <a class="mui-tab-item" (click)="toRouter('services')" routerLink="/services" href="#" v=3>
+                    <img src="../assets/images/main/fuwu.png" (click)="toRouter('services')">
+                    <span class="mui-tab-label" (click)="toRouter('services')">服务</span>
+                </a>
+            </li>
+            <li class="active">
+                <a class="mui-tab-item" (click)="toRouter('orders')" href="#" v=4>
+                    <img src="../assets/images/main/huiyuan.png" (click)="toRouter('orders')">
+                    <span class="mui-tab-label" (click)="toRouter('orders')">微会员</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
 </nav>
 
 <pop-over
@@ -41,79 +55,3 @@
         <li class="mui-table-view-cell"><a href="house.html">Three bedroom - 128 sqm <br>复式</a></li>
     </ul>
 </div>
-
-<router-outlet></router-outlet>
-
-
-<script>
-    function about(){
-        mui(".shadow")[0].style.display = 'block';
-        mui("#about-html")[0].style.display = 'block';
-    }
-    function contact(){
-        mui(".shadow")[0].style.display = 'block';
-        mui("#contact-html")[0].style.display = 'block';
-        console.log(mui("#contact-html")[0].style);
-        //var data = mui("#contact-html").innerHTML;
-        //mui.alert(data,'联系方式','<a href="">关于莎玛 ></a>',null);
-    }
-    $('#house-menu li').each(function (){
-        $(this).click(function(){alert(1)});
-    });
-
-    mui("#tab-bottom").on("tap","a",function(event){
-        var id = this.getAttribute('v');
-        if(id==1){
-            window.location.href="index.html";
-        }else if(id==2){
-            mui('.mui-popover').popover('toggle',document.getElementById("popover-btn"));
-            $('body,html').animate({ scrollTop: 0 }, 200, null ,function() {
-                mui('.mui-popover').popover('toggle',document.getElementById("popover-btn"));
-            });
-            //mui('.mui-popover').popover('toggle',document.getElementById("popover-btn"));
-            $('body,html').animate({ scrollTop: 0 }, 200, null ,function() {
-                mui('.mui-popover').popover('toggle',document.getElementById("popover-btn"));
-            });
-        }else if(id==3){
-            window.location.href="service.html";
-        }else if(id==4){
-            window.location.href="member.html";
-        }
-    });
-</script>
-
-<script>
-    function showDetail(src){
-        $('#pic').attr('src',src)
-        $('#detail-html').css('top', -10000);
-        $('.shadow').show();
-        $('#detail-html').show(10,function(){
-            setTimeout(function(){
-                var top = ($(window).height() - $('#detail-html').height()) / 2;
-                $('#detail-html').css('top', top-20);
-            },200);
-        });
-
-
-    }
-
-    mui("#tab-bottom").on("tap","a",function(event){
-        var id = this.getAttribute('v');
-        if(id==1){
-            window.location.href="index.html";
-        }else if(id==2){
-            mui('.mui-popover').popover('toggle',document.getElementById("popover-btn"));
-            $('body,html').animate({ scrollTop: 0 }, 200, null ,function() {
-                mui('.mui-popover').popover('toggle',document.getElementById("popover-btn"));
-            });
-        }else if(id==3){
-            window.location.href="service.html";
-        }else if(id==4){
-            window.location.href="member.html";
-        }
-    });
-
-    $.get("http://shama.jcjever.com/houses", function(result){
-        $("div").html(result);
-    });
-</script>

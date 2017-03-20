@@ -15,18 +15,22 @@ class Cors
      */
     public function handle($request, Closure $next)
     {
-        // 设置允许访问的域地址
-        $domains = ['http://localhost:8080'];
-        // 判断请求头中是否包含ORIGIN字段
-        if(isset($request->server()['HTTP_ORIGIN'])){
-            $origin = $request->server()['HTTP_ORIGIN'];
-            if (in_array($origin, $domains)) {
-                //设置响应头信息
-                header('Access-Control-Allow-Origin: '.$origin);
-                header('Access-Control-Allow-Headers: Origin, Content-Type, Authorization');
-            }
-        }
+//        // 设置允许访问的域地址
+//        $domains = ['http://localhost:8080'];
+//        // 判断请求头中是否包含ORIGIN字段
+//        if(isset($request->server()['HTTP_ORIGIN'])){
+//            $origin = $request->server()['HTTP_ORIGIN'];
+//            if (in_array($origin, $domains)) {
+//                //设置响应头信息
+//                header('Access-Control-Allow-Origin: '.$origin);
+//                header('Access-Control-Allow-Headers: Origin, Content-Type, Authorization');
+//            }
+//        }
+//
+//        return $next($request);
 
-        return $next($request);
+        return $next($request)->header('Access-Control-Allow-Origin','*')
+            ->header('Access-Control-Allow-Methods','POST, GET, OPTIONS, PUT, DELETE')
+            ->header('Access-Control-Allow-Headers','Content-Type, Accept, Authorization, X-Requested-With');
     }
 }
