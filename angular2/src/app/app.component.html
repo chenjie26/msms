@@ -1,37 +1,67 @@
 ﻿
 <router-outlet></router-outlet>
 
-<nav class="navbar navbar-default navbar-fixed-bottom">
+<nav class="nmui-bar nmui-bar-tab">
     <div class="container">
-        <ul class="nav navbar-nav">
-            <li class="active">
-                <a class="mui-tab-item" (click)="toRouter('/')" href="#">
-                    <img src="../assets/images/main/jianjie1.png" (click)="toRouter('/')">
-                    <span class="mui-tab-label" (click)="toRouter('/')">简介</span>
+        <!--<ul>-->
+            <!--<li class="nmui-tab-item">-->
+                <a class="nmui-tab-item" (click)="toRouter('/')">
+                    <img src="../assets/images/main/jianjie1.png" class="nmui-icon">
+                    <div class="nmui-tab-label">简介</div>
                 </a>
-            </li>
-            <li>
-                <a class="mui-tab-item" v=2 (click)="popOverReserve.toggle($event)">
-                    <img src="../assets/images/main/yuding.png" >
-                    <span class="mui-tab-label">预定</span>
+            <!--</li>-->
+            <!--<li class="nmui-tab-item">-->
+                <a class="nmui-tab-item" v=2 (click)="popOverReserve.toggle($event)">
+                    <img src="../assets/images/main/yuding.png" class="nmui-icon">
+                    <div class="nmui-tab-label">预订</div>
                 </a>
-            </li>
-            <li class="active">
-                <a class="mui-tab-item" (click)="toRouter('services')" routerLink="/services" href="#" v=3>
-                    <img src="../assets/images/main/fuwu.png" (click)="toRouter('services')">
-                    <span class="mui-tab-label" (click)="toRouter('services')">服务</span>
+            <!--</li>-->
+            <!--<li class="nmui-tab-item">-->
+                <a class="nmui-tab-item" (click)="toRouter('services')" v=3>
+                    <img src="../assets/images/main/fuwu.png" class="nmui-icon">
+                    <div class="nmui-tab-label">服务</div>
                 </a>
-            </li>
-            <li class="active">
-                <a class="mui-tab-item" (click)="toRouter('orders')" href="#" v=4>
-                    <img src="../assets/images/main/huiyuan.png" (click)="toRouter('orders')">
-                    <span class="mui-tab-label" (click)="toRouter('orders')">微会员</span>
+            <!--</li>-->
+            <!--<li class="nmui-tab-item">-->
+                <a class="nmui-tab-item" (click)="toRouter('orders')"  v=4>
+                    <img src="../assets/images/main/huiyuan.png" class="nmui-icon">
+                    <div class="nmui-tab-label">微会员</div>
                 </a>
-            </li>
+            <!--</li>-->
 
-        </ul>
+        <!--</ul>-->
     </div>
 </nav>
+
+<!--<nav class="mui-bar mui-bar-tab" id="tab-bottom">-->
+    <!--<ul>-->
+        <!--<li class="nmui-tab-item">-->
+
+    <!--<a class="mui-tab-item" (click)="toRouter('/')" href="#">-->
+        <!--<img src="../assets/images/main/jianjie1.png" (click)="toRouter('/')">-->
+        <!--<span class="mui-tab-label" (click)="toRouter('/')">简介</span>-->
+    <!--</a>-->
+            <!--</li>-->
+       <!--<li class="nmui-tab-item">-->
+    <!--<a class="mui-tab-item" v=2 (click)="popOverReserve.toggle($event)">-->
+        <!--<img src="../assets/images/main/yuding.png" >-->
+        <!--<span class="mui-tab-label">预定</span>-->
+    <!--</a>-->
+       <!--</li>-->
+        <!--<li class="nmui-tab-item">-->
+    <!--<a class="mui-tab-item" (click)="toRouter('services')" routerLink="/services" href="#" v=3>-->
+        <!--<img src="../assets/images/main/fuwu.png" (click)="toRouter('services')">-->
+        <!--<span class="mui-tab-label" (click)="toRouter('services')">服务</span>-->
+    <!--</a>-->
+            <!--</li>-->
+        <!--<li class="nmui-tab-item">-->
+    <!--<a class="mui-tab-item" (click)="toRouter('orders')" href="#" v=4>-->
+        <!--<img src="../assets/images/main/huiyuan.png" (click)="toRouter('orders')">-->
+        <!--<span class="mui-tab-label" (click)="toRouter('orders')">微会员</span>-->
+    <!--</a>-->
+        <!--</li>-->
+    <!--</ul>-->
+<!--</nav>-->
 
 <pop-over
         #popOverReserve [my]="'bottom'" [at]="'top'"
@@ -39,10 +69,8 @@
     <div class="my-pop-over" >
         <ul class="mui-table-view">
             <li class="mui-table-view-cell"><a routerLink="/houses" (click)="popOverReserve.toggle($event)">Two bedroom - 100 sqm <br>二房-110平米</a></li>
-            <li class="mui-table-view-cell"><a href="house.html">Three bedroom - 128 sqm <br>三房-128平米</a></li>
-            <li class="mui-table-view-cell"><a href="house.html">Three bedroom - 128 sqm <br>复式</a></li>
-            <li class="mui-table-view-cell"><a href="house.html">Three bedroom - 128 sqm <br>复式</a></li>
-            <li class="mui-table-view-cell"><a href="house.html">Three bedroom - 128 sqm <br>复式</a></li>
+            <li class="mui-table-view-cell"><a routerLink="/houses" (click)="popOverReserve.toggle($event)">Three bedroom - 128 sqm <br>三房-128平米</a></li>
+            <li class="mui-table-view-cell"><a routerLink="/houses" (click)="popOverReserve.toggle($event)">Three bedroom - 128 sqm <br>复式</a></li>
         </ul>
     </div>
 </pop-over>

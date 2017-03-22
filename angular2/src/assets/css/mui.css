@@ -305,7 +305,7 @@ a:active
 .mui-content
 {
     background-color: #efeff4;
-
+    margin-bottom:50px;
     -webkit-overflow-scrolling: touch;
 }
 

@@ -143,6 +143,7 @@ ul{
 }
 #map{
 	background:#f9f9f8;
+	margin-bottom:50px;
 }
 #map ._head{
 	line-height: 2.5;
@@ -450,4 +451,19 @@ padding: 10px;
 	text-align: center;
 	padding:7px 0px;
 	border-radius: 0 0 8px 8px ;
+}
+
+.navLi {
+	display: table-cell;
+	overflow: hidden;
+
+	width: 1%;
+	height: 50px;
+
+	text-align: center;
+	vertical-align: middle;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+
+	color: #929292;
 }
