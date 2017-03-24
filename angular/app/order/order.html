@@ -1,0 +1,56 @@
+<header class="mui-bar mui-bar-nav">
+    <a href="index.html"><span class="mui-icon mui-icon-arrowleft" ></span></a>
+    <h1 class="mui-title" >微会员</h1>
+    <a href="member-info.html"><img src="../images/main/member.png" class="mui-pull-right" style="padding-top:10px;" /></a>
+</header>
+
+
+
+<div class="mui-content member">
+    <div class="mui-row">
+        <div class="mui-col-sm-12 mui-col-xs-12">
+            <ul class="mui-table-view">
+                <li class="mui-table-view-cell title-blue">
+                    已使用订单 <span class="mui-icon mui-icon-arrowdown mui-pull-right"></span>
+                </li>
+                <li class="mui-table-view-cell ">
+                    <div class="mui-clearfix"></div>
+                    <ul class="mui-table-view list-white">
+                        <li ng-repeat="order in orders | propsFilter : {status: '1'}" class="mui-table-view-cell">
+                            <div class="mui-row">
+                                <div class="mui-col-sm-6 mui-col-xs-6">
+                                    {{order.created_at | date: 'yyyy-MM-dd'}}
+                                </div>
+                                <div class="mui-col-sm-6 mui-col-xs-6">
+                                    <span >合计：
+                                        {{order.details.length}}
+                                        项服务订单</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="mui-table-view-cell title-blue">
+                    已预订订单 <span class="mui-icon mui-icon-arrowright mui-pull-right"></span>
+                </li>
+                <li class="mui-table-view-cell ">
+                    <ul class="mui-table-view list-white">
+                        <li ng-repeat="order in orders | propsFilter : {status: '0'}" class="mui-table-view-cell">
+                            <div class="mui-row">
+                                <div class="mui-col-sm-6 mui-col-xs-6">
+                                    {{order.created_at | date: 'yyyy-MM-dd'}}
+                                </div>
+                                <div class="mui-col-sm-6 mui-col-xs-6">
+                                    <span >合计：
+                                        {{order.details.length}}
+                                        项服务订单</span>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

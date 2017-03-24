@@ -4,6 +4,7 @@ import { FormsModule }    from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import {BaiduMap} from 'angular2-baidu-map/src';
 import { PopoverModule } from 'ng2-pop-over';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common';
 
 // used to create fake backend
 import { fakeBackendProvider } from './_helpers/index';
