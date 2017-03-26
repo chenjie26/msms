@@ -15,13 +15,31 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Route::any('/wechat', 'App\Http\Controllers\Api\WechatController@serve');
+
+//Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
+//    Route::get('/wxUser', function () {
+//        $user = session('wechat.oauth_user'); // 拿到授权用户资料
+//
+//        return $user;
+//    });
+//});
 
 $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', function ($api) {
     $api->group(['namespace' => 'App\Http\Controllers\Api'], function ($api) {
 //namespace声明路由组的命名空间，因为上面设置了"prefix"=>"api",所以以下路由都要加一个api前缀，比如请求/api/users_list才能访问到用户列表接口
         $api->group(['EnableCrossRequestMiddleware'], function ($api) {
+
+            $api->any('/wechat', 'WechatController@serve');
+            $api->any('/wxAuth', 'WechatController@auth');
         #管理员可用接口
+
+            $api->get('/laravel_sms/info', '\Toplan\Sms\SmsController@getInfo');
+            $api->post('/laravel_sms/verify-code', 'SmsController@postSendCode');
+            $api->post('/laravel_sms/voice-verify', 'SmsController@postVoiceVerify');
+            $api->post('/laravel_sms/test', 'SmsController@test');
+            $api->post('/laravel_sms/codeVerify', '\Toplan\Sms\SmsController@codeVerify');
 
             $api->post('/user/login','UserController@login');
             $api->get('/user/logout','UserController@logout');
