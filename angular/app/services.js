@@ -42,4 +42,24 @@ angular.module('myApp.services', [])
                 isArray: true
             }
         });
+    }).
+    factory('WeiXin', function ($http,$window,$location) {
+        $http({
+            url: API_HOST + '/wechat',
+            method: "get"
+        }).then(
+                function(res){
+                    $window.wx.config(res);
+                }
+            );
+    }).
+    factory('Auth', function ($http,$window,$location) {
+        $http({
+            url: API_HOST + '/wechat',
+            method: "get"
+        }).then(
+            function(res){
+                $window.wx.config(res);
+            }
+        );
     })

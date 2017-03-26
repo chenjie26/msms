@@ -71,18 +71,16 @@ function addMapOverlay(){
   ];
   for(var index = 0; index < markers.length; index++ ){
     var point = new BMap.Point(markers[index].position.lng,markers[index].position.lat);
-    var marker = new BMap.Marker(point,{icon:new BMap.Icon("http://api.map.baidu.com/lbsapi/createmap/images/icon.png",new BMap.Size(20,25),{
-      imageOffset: new BMap.Size(markers[index].imageOffset.width,markers[index].imageOffset.height)
-    })});
-    var label = new BMap.Label(markers[index].title,{offset: new BMap.Size(25,5)});
+    var marker = new BMap.Marker(point,{icon:new BMap.Icon("/images/main/marker.png",new BMap.Size(35,50))});
+    // var label = new BMap.Label(markers[index].title,{offset: new BMap.Size(25,5)});
     var opts = {
       width: 200,
       title: markers[index].title,
       enableMessage: false
     };
     var infoWindow = new BMap.InfoWindow(markers[index].content,opts);
-    marker.setLabel(label);
-    addClickHandler(marker,infoWindow);
+    // marker.setLabel(label);
+    addClickHandler(marker);
     map.addOverlay(marker);
   };
 }
