@@ -10,10 +10,10 @@
     <div class="mui-row">
         <div class="mui-col-sm-4 mui-col-xs-4" id="service-left-container">
             <ul class="mui-table-view service-left">
-                <li ng-repeat="service in services" class="mui-table-view-cell" ng-click="showDetails(service)">
-                    <div><img src="../images/main/s1.png" src1="../images/main/s11.png"/></div>
-                    {{service.en_name}}<br>
-                    {{service.name}}
+                <li ng-repeat="service in showServices" class="mui-table-view-cell" ng-click="showDetails(service)">
+                    <div><img ng-src="{{service.image}}"/></div>
+                    {{service.service.en_name}}<br>
+                    {{service.service.name}}
                 </li>
             </ul>
         </div>

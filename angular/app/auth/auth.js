@@ -2,20 +2,18 @@
  * Created by jackson on 2017-3-24.
  */
 
-angular.module('myApp.auth', ['ui.router', 'oc.lazyLoad', 'myApp.services'])
+angular.module('myApp.auth', [])
 
 .config(function($stateProvider, $ocLazyLoadProvider) {
     $stateProvider.state('/login', {
         url: '/login',
         templateUrl: 'auth/login.html',
         controller: 'LoginCtrl'
-    })
-    .$stateProvider.state('/register', {
+    }).state('/register', {
         url: '/register',
         templateUrl: 'auth/register.html',
         controller: 'RegisterCtrl'
-    })
-    .$stateProvider.state('/register2', {
+    }).state('/register2', {
         url: '/register2',
         templateUrl: 'auth/register2.html',
         controller: 'Register2Ctrl'
@@ -23,12 +21,27 @@ angular.module('myApp.auth', ['ui.router', 'oc.lazyLoad', 'myApp.services'])
 })
 
 
-.controller('LoginCtrl', function($scope, ServicePopulate) {
+.controller('LoginCtrl', function($scope, Auth) {
 
     $scope.data = {};
 
     $scope.login = function () {
-        $scope.details = service.details;
     }
 
-});
+})
+    .controller('RegisterCtrl', function($scope, Auth) {
+
+        $scope.data = {};
+
+        $scope.login = function () {
+        }
+
+    })
+    .controller('Register2Ctrl', function($scope, Auth) {
+
+        $scope.data = {};
+
+        $scope.login = function () {
+        }
+
+    });

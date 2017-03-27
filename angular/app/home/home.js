@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('myApp.home', ['ui.router', 'oc.lazyLoad'])
+angular.module('myApp.home', [])
 
 .config(function($stateProvider, $ocLazyLoadProvider) {
-  $stateProvider.state('/home', {
+  $stateProvider.state('/', {
     url: '/',
     templateUrl: 'home/home.html',
     controller: 'HomeCtrl',

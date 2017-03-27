@@ -6,13 +6,19 @@ var myapp = angular.module('myApp', [
   'ngResource',
   'myApp.resource',
   'oc.lazyLoad',
-  'myApp.home',
   'myApp.service',
+  'myApp.home',
   'myApp.order',
-  'myApp.house'
+  'myApp.house',
+  'myApp.auth'
 ]);
 
-myapp.constant('API_HOST', 'http://shama.jcjever.com');
+myapp.constant('API_HOST', 'http://shama.demo.com');
+
+myapp.constant('AccessLevels', {
+  anon: 0,
+  user: 1
+});
 
 myapp.filter('propsFilter', function() {
   return function(items, props) {
@@ -48,4 +54,31 @@ myapp.config(function config($stateProvider, $urlRouterProvider, $ocLazyLoadProv
   });
 
   $urlRouterProvider.otherwise("/");
+});
+
+myapp.run(function($rootScope, $state, Auth, $location) {
+  $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams) {
+    console.log("toState is ", toState);
+    var access;
+    if (toState.data) {
+      if (toState.data.access) {
+        access = toState.data.access;
+      } else {
+        access = false;
+      }
+    } else {
+      access = false;
+    }
+    console.log("toState access is ", access);
+    if (!Auth.authorize(access)) {
+      console.log("in auth is ");
+      event.preventDefault();
+
+      // $location.path('/login');
+      $state.go('/login')
+      $rootScope.isAuth = false;
+    }else{
+      $rootScope.isAuth = true;
+    }
+  });
 });

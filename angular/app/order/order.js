@@ -2,13 +2,22 @@
  * Created by jackson on 2017-3-24.
  */
 
-angular.module('myApp.order', ['ui.router', 'oc.lazyLoad', 'myApp.services'])
+angular.module('myApp.order', [])
 
-.config(function($stateProvider, $ocLazyLoadProvider) {
+.config(function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
+
+    var AccessLevels = {
+        anon: 0,
+        user: 1
+    }
+
     $stateProvider.state('/order', {
         url: '/order',
         templateUrl: 'order/order.html',
-        controller: 'OrderCtrl'
+        controller: 'OrderCtrl',
+        data: {
+            access: AccessLevels.user
+        }
     });
 })
 
