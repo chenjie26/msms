@@ -31,7 +31,7 @@ angular.module('myApp.home', ['ui.router', 'oc.lazyLoad'])
 
   $scope.contact = function () {
     mui(".shadow")[0].style.display = 'block';
-    mui("#about-html")[0].style.display = 'block';
+    mui("#contact-html")[0].style.display = 'block';
   };
 });
 

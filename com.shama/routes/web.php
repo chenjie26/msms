@@ -36,14 +36,15 @@ $api->version('v1', function ($api) {
         #管理员可用接口
 
             $api->get('/laravel_sms/info', '\Toplan\Sms\SmsController@getInfo');
-            $api->post('/laravel_sms/verify-code', 'SmsController@postSendCode');
-            $api->post('/laravel_sms/voice-verify', 'SmsController@postVoiceVerify');
-            $api->post('/laravel_sms/test', 'SmsController@test');
-            $api->post('/laravel_sms/codeVerify', '\Toplan\Sms\SmsController@codeVerify');
+            $api->post('/laravel_sms/verify-code', 'SMSController@postSendCode');
+            $api->post('/laravel_sms/voice-verify', 'SMSController@postVoiceVerify');
+            $api->post('/laravel_sms/codeVerify', 'SMSController@codeVerify');
 
             $api->post('/user/login','UserController@login');
             $api->get('/user/logout','UserController@logout');
             $api->get('/user/profile','UserController@profile');
+            $api->get('/user/getByToken', 'UserController@getByToken');
+            $api->post('/user/register','UserController@store');
 
             $api->post('/member/login','MemberController@login');
             $api->get('/member/logout','MemberController@logout');

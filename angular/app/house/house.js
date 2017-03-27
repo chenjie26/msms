@@ -23,7 +23,7 @@ angular.module('myApp.house', ['ui.router', 'oc.lazyLoad', 'myApp.services'])
     });
 
     $scope.showDetail = function(src){
-        $('#pic').attr('src', 'images/main/' + src)
+        $('#pic').attr('src', src)
         $('#detail-html').css('top', -10000);
         $('.shadow').show();
         $('#detail-html').show(10,function(){

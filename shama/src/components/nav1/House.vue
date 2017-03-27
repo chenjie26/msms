@@ -331,14 +331,15 @@
 									_this.update({
 										id:_this.editForm.id,
 										name:_this.editForm.name,
-										en_name:_this.editForm.en_name,
-										light_point:_this.editForm.light_point,
-										bathroom:_this.editForm.bathroom,
-										bathtub:_this.editForm.bathtub,
-										bed:_this.editForm.bed,
-										_index:_this.editForm._index,
-										pics:_this.editForm.pics,
-										link:_this.editForm.link
+                                        pic:_this.editForm.pic,
+                                        en_name:_this.editForm.en_name,
+                                        light_point:_this.editForm.light_point,
+                                        bathroom:_this.editForm.bathroom,
+                                        bathtub:_this.editForm.bathtub,
+                                        bed:_this.editForm.bed,
+                                        _index:_this.editForm._index,
+                                        pics:_this.editForm.pics,
+                                        link:_this.editForm.link
 									});
 								}
 

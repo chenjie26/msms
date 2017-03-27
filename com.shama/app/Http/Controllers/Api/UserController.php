@@ -2,67 +2,49 @@
 
 namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\User;
-use Ramsey\Uuid\Uuid;
-use Ramsey\Uuid\Exception\UnsatisfiedDependencyException;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\Controller;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 
 class UserController extends Controller
 {
-	const MODEL_NAME = \App\User::class;
+    public function login(Request $request)
+    {
+        $credentials = $request->only('username', 'password');
+        $authenticatedUser = User::authenticate($credentials['username'], $credentials['password']);
 
-	const SALT = "TOM123";
+        if (!$authenticatedUser) {
+            return response()->json(['error' => 'invalid_credentials'], 401);
+        }
 
-	public function __construct(){
-		$this->setModel(self::MODEL_NAME);
-	}
-
-
-    public function getPerPage(){
-        return 10;
+        $authenticatedUser['token'] = JWTAuth::fromUser($authenticatedUser);
+        return response()->json($authenticatedUser);
     }
 
-	public function login(Request $request){
-		$data = $this->getContent($request);
-		if(!isset($data['email']) || !isset($data['password'])){
-			throw new \Exception("Error Processing Request, email or password no set", 101);
-		}
+    public function store(Request $request)
+    {
+        Log::debug('storing');
 
-		$user = User::where('email', $data['email'])->first();
+        $user = new User($request->all());
 
-		if(!$user)
-			throw new \Exception("username not correct.", 102);
+        if (!$user->save()) {
+            abort(500, 'Could not save user.');
+        }
 
-		if(md5($data['password']. self::SALT) != $user->password)
-			throw new \Exception("passowrd not correct.", 103);
-		$user->token = Uuid::uuid1()->getHex();
-		$user->last_login = date('Y-m-d H:i:s');
-		$user->save();
-		return ['token'=>$user->token];
-	}
+        $user['token'] = JWTAuth::fromUser($user);
+        return $user;
+    }
 
-	public function logout(Request $request){
-		$token = $request->header('token');
-		if(!$token)
-			throw new \Exception("token not set", 1);
-		$user = User::where('token', $token)->first();
-		if(!$user)
-			throw new \Exception("token unvalid", 1);
-		$user->token = "";
-		$user->save();
-		return ['token' => '','message'=>'logout success'];
-	}
+    public function show($id)
+    {
+        return User::find($id);
+    }
 
-	public function profile(Request $request){
-		$token = $request->header('token');
-		
-		if(!$token)
-			throw new \Exception("token not set", 1);
-		$user = User::where('token', $token)->first();
-		if(!$user)
-			throw new \Exception("token unvalid", 1);
-		return $user;
-	}
+    public function getByToken()
+    {
+        return JWTAuth::parseToken()->authenticate();
+    }
 }

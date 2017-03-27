@@ -55,8 +55,8 @@ angular.module('myApp.services', [])
     }).
     factory('Auth', function ($http,$window,$location) {
         $http({
-            url: API_HOST + '/wechat',
-            method: "get"
+            url: API_HOST + '/login',
+            method: "post"
         }).then(
             function(res){
                 $window.wx.config(res);

@@ -36,30 +36,24 @@ class SMSController extends Controller
 
     public function codeVerify(Request $request) {
 
-        $state = Manager::retrieveState();
-
-        Log::error($state);
-
         $validator = Validator::make($request->all(), [
             'mobile'     => 'required|confirm_mobile_not_change|confirm_rule:mobile_required',
             'verifyCode' => 'required|verify_code',
             //more...
         ]);
 
-        Log::debug($validator->fails());
-
         if ($validator->fails()) {
             //验证失败后建议清空存储的发送状态，防止用户重复试错
-            Manager::forgetState();
-            return redirect()->back()->withErrors($validator);
+//            Manager::forgetState();
+            return array(
+                "success" => false
+            );
         } else {
-            return $validator;
+            Manager::forgetState();
+            return array(
+                "success" => true
+            );
         }
-    }
-
-    public function test() {
-        $state = Manager::retrieveState();
-        return $state;
     }
 
     public function postSendCode()
