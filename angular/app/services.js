@@ -53,7 +53,7 @@ angular.module('myApp.services', [])
                 }
             );
     })
-    .factory('Auth', function($http, LocalService, AccessLevels) {
+    .factory('Auth', function($http, LocalService, AccessLevels, API_HOST) {
         return {
             authorize: function(access) {
                 if(!access) {
@@ -69,10 +69,16 @@ angular.module('myApp.services', [])
                 return LocalService.get('auth_token');
             },
             login: function(credentials) {
-                var login = $http.post('/user/login', credentials);
-                login.success(function(result) {
+                var login = $http.post(API_HOST + '/user/login', credentials);
+                login.then(function(result) {
                     LocalService.set('auth_token', JSON.stringify(result));
                 });
+
+                // var login = $http({
+                //     method: 'post',
+                //     url: API_HOST + '/user/login',
+                //     data: credentials
+                // });
                 return login;
             },
             logout: function() {
@@ -81,11 +87,17 @@ angular.module('myApp.services', [])
             },
             register: function(formData) {
                 LocalService.unset('auth_token');
-                var register = $http.post('/user/register', formData, { headers: {access_token: formData.username}});
-                register.success(function(result) {
-                    LocalService.set('auth_token', JSON.stringify(result));
+                var register = $http.post(API_HOST + '/user/register', formData, { headers: {access_token: formData.username}});
+                register.then(function(result) {
+                    if (result.data.user) {
+                        LocalService.set('auth_token', JSON.stringify(result));
+                    }
                 });
                 return register;
+            },
+            sendVerifyCode: function (mobile) {
+                var sendCode = $http.post(API_HOST + '/laravel_sms/verify-code', {mobile: mobile}, { headers: {access_token: mobile}});
+                return sendCode;
             }
         }
     })

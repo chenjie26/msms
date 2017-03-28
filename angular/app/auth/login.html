@@ -12,11 +12,11 @@
     <form class="mui-input-group">
         <div class="mui-input-row">
             <label><span class="mui-icon mui-icon-contact"></span></label>
-            <input type="text" class="mui-input-clear" placeholder="电子邮箱">
+            <input ng-model="data.username" type="text" class="mui-input-clear" placeholder="手机号">
         </div>
         <div class="mui-input-row">
             <label><span class="mui-icon mui-icon-locked"></span></label>
-            <input type="password" class="mui-input-password" placeholder="密码">
+            <input ng-model="data.password" type="password" class="mui-input-password" placeholder="密码">
         </div>
         <div class="mui-button-row" id="btn_login">
             <a ng-click="login()" style="color:#fff;">LOGIN</a>

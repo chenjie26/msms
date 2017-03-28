@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 
 class User extends Authenticatable
 {
@@ -30,7 +31,15 @@ class User extends Authenticatable
 
     public static function authenticate($username, $password)
     {
-        $user = User::where('username', $username)->first();
+        $userList = User::where('username', $username);
+//        Log::debug('user count is ', $userList->count());
+//        if ($userList->count() <= 0) {
+//            return false;
+//        }
+        $user = $userList->first();
+        if (!$user) {
+            return false;
+        }
         if (!Hash::check($password, $user->password)) {
             return false;
         }

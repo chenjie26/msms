@@ -41,8 +41,8 @@ class UserController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'username' => 'required|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
+            'username' => 'required|max:255|unique:users|confirm_mobile_not_change',
+            'password' => 'required|min:6',
             'verifyCode' => 'required|verify_code',
         ]);
     }

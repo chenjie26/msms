@@ -22,11 +22,12 @@ angular.module('myApp.order', [])
 })
 
 
-.controller('OrderCtrl', function($scope, OrderPopulate) {
+.controller('OrderCtrl', function($scope, OrderPopulate, LocalService) {
 
     $scope.services = [];
     $scope.details = [];
 
+    console.log(" token is ", LocalService.get('auth_token'));
     $scope.orders = OrderPopulate.all({}, function (data) {
         $scope.orders = data.orders;
 

@@ -75,7 +75,7 @@ myapp.run(function($rootScope, $state, Auth, $location) {
       event.preventDefault();
 
       // $location.path('/login');
-      $state.go('/login')
+      $state.go('/login');
       $rootScope.isAuth = false;
     }else{
       $rootScope.isAuth = true;
