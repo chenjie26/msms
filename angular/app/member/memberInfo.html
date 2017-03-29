@@ -1,0 +1,42 @@
+<header class="mui-bar mui-bar-nav">
+    <a href="/#!/order"><span class="mui-icon mui-icon-arrowleft" ></span></a>
+    <h1 class="mui-title">微会员</h1>
+    <a ng-click="logout()"><img src="../images/main/member.png" class="mui-pull-right" style="padding-top:10px;" /></a>
+</header>
+
+
+<div class="mui-content member-info">
+    <div class="mui-row">
+        <div class="mui-col-sm-12 mui-col-xs-12">
+            <ul class="mui-table-view">
+                <a href="member-info-edit.html" style="color:#666">
+                    <li class="mui-table-view-cell">
+                        姓名<img src="../images/main/m1.gif" >
+                        <span class="mui-icon mui-icon-arrowright mui-pull-right"></span>
+                        <span class="mui-pull-right">{{data.name}}</span>
+                    </li>
+                </a>
+                <li class="mui-table-view-cell">
+                    性别<img src="../images/main/m2.gif" >
+                    <span class="mui-icon mui-icon-arrowright mui-pull-right"></span>
+                    <span class="mui-pull-right">{{data.sex == 'male' ? '男' : '女'}}</span>
+                </li>
+                <li class="mui-table-view-cell">
+                    房间号<img src="../images/main/m3.gif" >
+                    <span class="mui-icon mui-icon-arrowright mui-pull-right"></span>
+                    <span class="mui-pull-right">{{data.roomNumber}}号</span>
+                </li>
+                <li class="mui-table-view-cell">
+                    登录手机号<img src="../images/main/m4.gif" >
+                    <span class="mui-icon mui-icon-arrowright mui-pull-right"></span>
+                    <span class="mui-pull-right">{{data.username}}</span>
+                </li>
+                <li class="mui-table-view-cell">
+                    生日<img src="../images/main/m5.png" >
+                    <span class="mui-icon mui-icon-arrowright mui-pull-right"></span>
+                    <span class="mui-pull-right">{{data.birthDay}}</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -16,6 +16,19 @@ angular.module('myApp.services', [])
             }
         });
     })
+    .factory('User', function (Resource, API_HOST) {
+        return Resource(API_HOST + '/user/:action', {action: '@action'}, {
+            get: {
+                method: 'GET'
+            },
+            update: {
+                method: 'PUT'
+            },
+            remove: {
+                method: 'DELETE'
+            }
+        });
+    })
     .factory('ServicePopulate', function (Resource, API_HOST) {
         return Resource(API_HOST + '/servicesWithDetails/:id', {id: '@id'}, {
             get: {
@@ -71,7 +84,7 @@ angular.module('myApp.services', [])
             login: function(credentials) {
                 var login = $http.post(API_HOST + '/user/login', credentials);
                 login.then(function(result) {
-                    LocalService.set('auth_token', JSON.stringify(result));
+                    LocalService.set('auth_token', JSON.stringify(result.data));
                 });
 
                 // var login = $http({
@@ -90,7 +103,7 @@ angular.module('myApp.services', [])
                 var register = $http.post(API_HOST + '/user/register', formData, { headers: {access_token: formData.username}});
                 register.then(function(result) {
                     if (result.data.user) {
-                        LocalService.set('auth_token', JSON.stringify(result));
+                        LocalService.set('auth_token', JSON.stringify(result.data));
                     }
                 });
                 return register;

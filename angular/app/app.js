@@ -10,7 +10,9 @@ var myapp = angular.module('myApp', [
   'myApp.home',
   'myApp.order',
   'myApp.house',
-  'myApp.auth'
+  'myApp.auth',
+  'myApp.member'
+
 ]);
 
 myapp.constant('API_HOST', 'http://shama.demo.com');

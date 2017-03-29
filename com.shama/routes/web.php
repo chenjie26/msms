@@ -45,6 +45,7 @@ $api->version('v1', function ($api) {
             $api->get('/user/profile','UserController@profile');
             $api->get('/user/getByToken', 'UserController@getByToken');
             $api->post('/user/register','UserController@store');
+            $api->put('/user','UserController@update');
 
             $api->post('/member/login','MemberController@login');
             $api->get('/member/logout','MemberController@logout');

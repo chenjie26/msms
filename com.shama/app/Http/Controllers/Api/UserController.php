@@ -75,9 +75,47 @@ class UserController extends Controller
         return $user;
     }
 
-    public function show($id)
+    public function update(Request $request)
     {
-        return User::find($id);
+        Log::debug('updating');
+
+        $token = JWTAuth::parseToken()->authenticate();
+
+        if (!$token) {
+            abort(401, 'not auth');
+        }
+
+        $user = User::find($token->id);
+        $content = $request->all();
+
+        if (array_key_exists ('name', $content)) {
+            $user->name = $content['name'];
+        }
+
+        if (array_key_exists ('sex', $content)) {
+            $user->sex = $content['sex'];
+        }
+
+        if (array_key_exists ('buildingNumber', $content)) {
+            $user->buildingNumber = $content['buildingNumber'];
+        }
+
+        if (array_key_exists ('roomNumber', $content)) {
+            $user->roomNumber = $content['roomNumber'];
+        }
+
+        return $user;
+    }
+
+    public function profile()
+    {
+        $token = JWTAuth::parseToken()->authenticate();
+
+        if (!$token) {
+            abort(401, 'not auth');
+        }
+
+        return User::find($token->id);
     }
 
     public function getByToken()

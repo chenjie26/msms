@@ -75,27 +75,31 @@ angular.module('myApp.auth', [])
         };
 
         $scope.register = function () {
-            Auth.register($scope.data).then(function (result) {
-                if (!result.data.user) {
-                    alert("注册失败");
-                } else {
-                    var token = LocalService.get('auth_token');
-                    console.log("token is ", token);
-                    $state.go('/order');
-                }
-                //$state.go('index.main');
-            }, function (data) {
-                console.log(data);
-                $scope.errorMsg = data.message;
-            });
+            $state.go('/register2');
+            // Auth.register($scope.data).then(function (result) {
+            //     if (!result.data.user) {
+            //         alert("注册失败");
+            //     } else {
+            //         var token = LocalService.get('auth_token');
+            //         console.log("token is ", token);
+            //         $state.go('/register2');
+            //     }
+            //     //$state.go('index.main');
+            // }, function (data) {
+            //     console.log(data);
+            //     $scope.errorMsg = data.message;
+            // });
         }
 
     })
-    .controller('Register2Ctrl', function($scope, Auth) {
+    .controller('Register2Ctrl', function($scope, Auth, User, $state) {
 
         $scope.data = {};
 
-        $scope.login = function () {
+        $scope.updateInfo = function () {
+            User.update($scope.data, function (data) {
+                $state.go('/order');
+            });
         }
 
     });
