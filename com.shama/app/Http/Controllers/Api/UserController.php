@@ -104,7 +104,7 @@ class UserController extends Controller
             $user->roomNumber = $content['roomNumber'];
         }
 
-        return $user;
+        return $user->save();
     }
 
     public function profile()

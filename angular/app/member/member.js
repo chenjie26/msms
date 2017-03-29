@@ -22,4 +22,10 @@ angular.module('myApp.member', ['ui.router', 'oc.lazyLoad', 'myApp.services'])
         Auth.logout();
         $state.go('/login');
     }
+
+    $scope.updateInfo = function () {
+        User.update($scope.data, function (data) {
+            $state.go('/order');
+        });
+    }
 });

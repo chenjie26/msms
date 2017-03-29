@@ -627,3 +627,4 @@ a:link,a:visited,a:active{
 .mui-checkbox input[type=checkbox].man-ckb:before, .mui-radio input[type=radio].woman-ckb:before,.woman-ckb.mui-checkbox input[type=checkbox]:checked:before, .mui-radio input[type=radio].woman-ckb:checked:before{
 	color: #fdbbeb;
 }
+a.mui-tab-item.mui-active .mui-tab-label {color: #fda932;}

@@ -157,6 +157,10 @@ angular.module('myApp.services', [])
                     LocalService.unset('auth_token');
                     $injector.get('$state').go('/login');
                 }
+                if (response.data.message == 'Token has expired') {
+                    LocalService.unset('auth_token');
+                    $injector.get('$state').go('/login');
+                }
                 return $q.reject(response);
             }
         }

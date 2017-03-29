@@ -6,37 +6,31 @@
 
 
 <div class="mui-content member-info">
-    <div class="mui-row">
-        <div class="mui-col-sm-12 mui-col-xs-12">
-            <ul class="mui-table-view">
-                <a href="member-info-edit.html" style="color:#666">
-                    <li class="mui-table-view-cell">
-                        姓名<img src="../images/main/m1.gif" >
-                        <span class="mui-icon mui-icon-arrowright mui-pull-right"></span>
-                        <span class="mui-pull-right">{{data.name}}</span>
-                    </li>
-                </a>
-                <li class="mui-table-view-cell">
-                    性别<img src="../images/main/m2.gif" >
-                    <span class="mui-icon mui-icon-arrowright mui-pull-right"></span>
-                    <span class="mui-pull-right">{{data.sex == 'male' ? '男' : '女'}}</span>
-                </li>
-                <li class="mui-table-view-cell">
-                    房间号<img src="../images/main/m3.gif" >
-                    <span class="mui-icon mui-icon-arrowright mui-pull-right"></span>
-                    <span class="mui-pull-right">{{data.roomNumber}}号</span>
-                </li>
-                <li class="mui-table-view-cell">
-                    登录手机号<img src="../images/main/m4.gif" >
-                    <span class="mui-icon mui-icon-arrowright mui-pull-right"></span>
-                    <span class="mui-pull-right">{{data.username}}</span>
-                </li>
-                <li class="mui-table-view-cell">
-                    生日<img src="../images/main/m5.png" >
-                    <span class="mui-icon mui-icon-arrowright mui-pull-right"></span>
-                    <span class="mui-pull-right">{{data.birthDay}}</span>
-                </li>
-            </ul>
+
+    <form class="mui-input-group">
+        <div class="mui-input-row">
+            <label>姓名<img src="../images/main/m1.gif" ></label>
+            <input type="text" ng-model="data.name" class="mui-input-clear" placeholder="请填写姓名">
         </div>
-    </div>
+        <div class="mui-input-row">
+            <label>性别<img src="../images/main/m2.gif" ></label>
+            <span class="mui-pull-right">{{data.sex == 'male' ? '男' : '女'}}</span>
+        </div>
+
+        <div class="mui-input-row">
+            <label>房间号<img src="../images/main/m3.gif" ></label>
+            <span class="mui-pull-right">{{data.roomNumber}}号</span>
+        </div>
+        <div class="mui-input-row">
+            <label>手机号<img src="../images/main/m4.gif" ></label>
+            <span class="mui-pull-right">{{data.username}}</span>
+        </div>
+        <div class="mui-input-row">
+            <label>生日<img src="../images/main/m5.png" ></label>
+            <span class="mui-pull-right">{{data.birthDay}}</span>
+        </div>
+        <div class="mui-button-row">
+            <a ng-click="updateInfo()">保存</a>
+        </div>
+    </form>
 </div>
