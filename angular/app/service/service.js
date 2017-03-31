@@ -13,14 +13,19 @@ angular.module('myApp.service', ['ui.router', 'oc.lazyLoad', 'myApp.services'])
 })
 
 
-.controller('ServiceCtrl', function($scope, ServicePopulate) {
+.controller('ServiceCtrl', function($scope, ServicePopulate, ShoppingCart) {
 
     $scope.services = [];
     $scope.details = [];
     $scope.showServices = [];
+    $scope.items = [];
 
     $scope.services = ServicePopulate.all({}, function (data) {
         $scope.services = data.services;
+
+        $scope.items = ShoppingCart.withServices({id: 'withServices'}, function (data) {
+            $scope.items = data;
+        });
 
         angular.forEach($scope.services, function(service, index) {
             var showService = {service: service, image: '', key: ''};
@@ -77,7 +82,14 @@ angular.module('myApp.service', ['ui.router', 'oc.lazyLoad', 'myApp.services'])
     };
 
 
+    $scope.save_item = function (service) {
+        var addItem = new ShoppingCart();
+        addItem.service_detail_id = service.id;
+        addItem.$save();
 
+        $scope.items.push(addItem);
+        mui.toast('服务添加成功',{ duration:'short', type:'div' });
+    }
 
 });
 
@@ -98,7 +110,4 @@ function _tab(btns,items){
 
 function submit_order(){
     mui.toast('订单提交成功',{ duration:'short', type:'div' })
-}
-function save_item(){
-    mui.toast('服务添加成功',{ duration:'short', type:'div' });
 }

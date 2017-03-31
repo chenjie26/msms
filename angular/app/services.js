@@ -29,6 +29,24 @@ angular.module('myApp.services', [])
             }
         });
     })
+    .factory('ShoppingCart', function (Resource, API_HOST) {
+        return Resource(API_HOST + '/shoppingCarts/:id', {id: '@id'}, {
+            get: {
+                method: 'GET',
+                isArray: true
+            },
+            update: {
+                method: 'PUT'
+            },
+            remove: {
+                method: 'DELETE'
+            },
+            withServices: {
+                method: 'get',
+                isArray: true
+            }
+        });
+    })
     .factory('ServicePopulate', function (Resource, API_HOST) {
         return Resource(API_HOST + '/servicesWithDetails/:id', {id: '@id'}, {
             get: {

@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\ShoppingCart;
+use App\Observers\ShoppingCartObserver;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Validator;
 use SmsManager;
@@ -51,6 +53,8 @@ class AppServiceProvider extends ServiceProvider
 
             return $state && array_key_exists($attribute, $state['usedRule']) && $state['usedRule'][$attribute] === $name;
         });
+
+        ShoppingCart::observe(ShoppingCartObserver::class);
     }
 
     /**

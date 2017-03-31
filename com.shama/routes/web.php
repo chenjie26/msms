@@ -70,6 +70,13 @@ $api->version('v1', function ($api) {
             $api->put('/orders/{id}','OrderController@_edit');
             $api->delete('/orders/{id}','OrderController@_del');
 
+            $api->get('/shoppingCarts','ShoppingCartController@_list');
+            $api->get('/shoppingCarts/withServices','ShoppingCartController@withServices');
+            $api->get('/shoppingCarts/{id}','ShoppingCartController@_detail');
+            $api->post('/shoppingCarts','ShoppingCartController@_add');
+            $api->put('/shoppingCarts/{id}','ShoppingCartController@_edit');
+            $api->delete('/shoppingCarts/{id}','ShoppingCartController@_del');
+
             $api->get('/feedbacks','FeedbackController@_list');
             $api->get('/feedbacks/{id}','FeedbackController@_detail');
             $api->post('/feedbacks','FeedbackController@_add');

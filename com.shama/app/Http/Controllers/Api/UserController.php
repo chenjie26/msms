@@ -104,6 +104,10 @@ class UserController extends Controller
             $user->roomNumber = $content['roomNumber'];
         }
 
+        if (array_key_exists ('birthDay', $content)) {
+            $user->birthDay = $content['birthDay'];
+        }
+
         if ($user->save()) {
             return $user;
         }

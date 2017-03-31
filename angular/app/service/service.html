@@ -20,10 +20,10 @@
         <div class="mui-col-sm-8 mui-col-xs-8 service-right">
 
             <ul class="mui-table-view " style="display:block">
-                <li ng-repeat="detail in details" class="mui-table-view-cell" onclick="save_item()">
+                <li ng-repeat="detail in details" class="mui-table-view-cell" ng-click="save_item(detail)">
                     <div class="mui-row" >
-                        <div class="mui-col-sm-5 mui-col-xs-5">{{detail.name}}</div>
-                        <div class="mui-col-sm-7 mui-col-xs-7"><img src="../images/main/plus.png" /> RMB{{detail.price}} </div>
+                        <div class="mui-col-sm-7 mui-col-xs-7">{{detail.name}}</div>
+                        <div class="mui-col-sm-5 mui-col-xs-5"><img src="../images/main/plus.png" /> RMB{{detail.price}} </div>
                     </div>
                 </li>
             </ul>
@@ -32,9 +32,10 @@
     </div>
 
 </div>
+
 <div class="mui-row order-bar">
-    <div class="mui-col-sm-7 mui-col-xs-7">合计：<span>1项服务订单</span></div>
-    <div class="mui-col-sm-5 mui-col-xs-5"><a href ="javascript:void(0)" onclick="submit_order()" style="color:#fff;">提交订单</a></div>
+    <div class="mui-col-sm-7 mui-col-xs-7">合计：<span>{{items.length}}项服务订单</span></div>
+    <div class="mui-col-sm-5 mui-col-xs-5"><a href ="javascript:void(0)" onclick="submit_order()" style="color:#fff;">下一步</a></div>
 </div>
 
 <script>
@@ -56,8 +57,5 @@
 
     function submit_order(){
         mui.toast('订单提交成功',{ duration:'short', type:'div' })
-    }
-    function save_item(){
-        mui.toast('服务添加成功',{ duration:'short', type:'div' });
     }
 </script>

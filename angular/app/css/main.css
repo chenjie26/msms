@@ -341,12 +341,12 @@ padding: 10px;
 	position: fixed;
 	bottom: 0px;
 	width: 100%;
-	line-height: 50px;
+	line-height: 55px;
 	font-size: 16px;
 	background: #fafafa;
 	border-top: solid 1px #ccc;
-	margin-top: 5px;
-	text-indent: 10px;;
+	text-indent: 10px;
+	z-index: 100;
 }
 .order-bar div:last-child{
 	text-align: center;
