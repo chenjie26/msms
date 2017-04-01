@@ -5,10 +5,18 @@
 angular.module('myApp.service', ['ui.router', 'oc.lazyLoad', 'myApp.services'])
 
 .config(function($stateProvider, $ocLazyLoadProvider) {
+    var AccessLevels = {
+        anon: 0,
+        user: 1
+    };
+
     $stateProvider.state('/service', {
         url: '/service',
         templateUrl: 'service/service.html',
-        controller: 'ServiceCtrl'
+        controller: 'ServiceCtrl',
+        data: {
+            access: AccessLevels.user
+        }
     });
 })
 
