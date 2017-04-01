@@ -85,10 +85,12 @@ angular.module('myApp.service', ['ui.router', 'oc.lazyLoad', 'myApp.services'])
     $scope.save_item = function (service) {
         var addItem = new ShoppingCart();
         addItem.service_detail_id = service.id;
-        addItem.$save();
-
-        $scope.items.push(addItem);
-        mui.toast('服务添加成功',{ duration:'short', type:'div' });
+        ShoppingCart.addItem({id: 'addItem', service_detail_id: service.id, quantity: 1}, function (data) {
+            if (data.shopping_cart.quantity <= 1) {
+                $scope.items.push(addItem);
+            }
+            mui.toast('服务添加成功',{ duration:'short', type:'div' });
+        });
     }
 
 });

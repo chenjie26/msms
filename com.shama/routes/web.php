@@ -74,8 +74,11 @@ $api->version('v1', function ($api) {
             $api->get('/shoppingCarts/withServices','ShoppingCartController@withServices');
             $api->get('/shoppingCarts/{id}','ShoppingCartController@_detail');
             $api->post('/shoppingCarts','ShoppingCartController@_add');
+            $api->post('/shoppingCarts/addItem','ShoppingCartController@addItem');
+            $api->post('/shoppingCarts/changeQuantity','ShoppingCartController@changeQuantity');
             $api->put('/shoppingCarts/{id}','ShoppingCartController@_edit');
             $api->delete('/shoppingCarts/{id}','ShoppingCartController@_del');
+            $api->post('/shoppingCarts/transferToOrder','ShoppingCartController@transferToOrder');
 
             $api->get('/feedbacks','FeedbackController@_list');
             $api->get('/feedbacks/{id}','FeedbackController@_detail');

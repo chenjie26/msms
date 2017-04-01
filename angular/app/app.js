@@ -11,7 +11,8 @@ var myapp = angular.module('myApp', [
   'myApp.order',
   'myApp.house',
   'myApp.auth',
-  'myApp.member'
+  'myApp.member',
+  'myApp.shoppingCart'
 
 ]);
 

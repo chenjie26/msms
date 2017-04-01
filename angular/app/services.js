@@ -44,6 +44,15 @@ angular.module('myApp.services', [])
             withServices: {
                 method: 'get',
                 isArray: true
+            },
+            transferToOrder: {
+                method: 'POST'
+            },
+            addItem: {
+                method: 'POST'
+            },
+            changeQuantity: {
+                method: 'POST'
             }
         });
     })
@@ -62,6 +71,20 @@ angular.module('myApp.services', [])
     })
     .factory('OrderPopulate', function (Resource, API_HOST) {
         return Resource(API_HOST + '/ordersWithDetails/:id', {id: '@id'}, {
+            get: {
+                method: 'GET'
+            },
+            all: {
+                method: 'GET'
+            },
+            remove: {
+                method: 'DELETE',
+                isArray: true
+            }
+        });
+    })
+    .factory('Order', function (Resource, API_HOST) {
+        return Resource(API_HOST + '/order/:id', {id: '@id'}, {
             get: {
                 method: 'GET'
             },

@@ -11,6 +11,7 @@ namespace App\Observers;
 use App\ShoppingCart;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use App\User;
+use Illuminate\Support\Facades\Log;
 
 class ShoppingCartObserver
 {
@@ -22,14 +23,5 @@ class ShoppingCartObserver
      */
     public function saving(ShoppingCart $shoppingCart)
     {
-        $token = JWTAuth::parseToken()->authenticate();
-
-        if (!$token) {
-            abort(401, 'not auth');
-        }
-
-        $user =  User::find($token->id);
-
-        $shoppingCart->user_id = $user->id;
     }
 }

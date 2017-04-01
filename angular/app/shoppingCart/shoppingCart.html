@@ -1,0 +1,37 @@
+<header class="mui-bar mui-bar-nav">
+    <a href="/#!/service"><span class="mui-icon mui-icon-arrowleft" ></span></a>
+    <h1 class="mui-title">购物车</h1>
+    <a href="feed-back.html"><img  class="mui-pull-right" width=24 style="margin-top:8px;" src="../images/main/msg-ico.png"></a>
+</header>
+
+
+
+<div class="mui-content">
+    <div class="mui-row">
+
+        <div class="mui-col-sm-12 mui-col-xs-12 service-right">
+
+            <ul class="mui-table-view " style="display:block">
+                <li  class="mui-table-view-cell" ng-repeat="cart in carts">
+                    <div class="mui-row" >
+                        <div class="mui-col-sm-8 mui-col-xs-8">{{cart.service_detail.name}}</div>
+                        <div class="mui-col-sm-4 mui-col-xs-4" style="text-align: right;">RMB{{cart.service_detail.price}}</div>
+                        <div class="mui-col-sm-12 mui-col-xs-12">
+                            <div class="mui-numbox mui-pull-right">
+                                <button class="mui-btn mui-numbox-btn-minus" ng-click="removeQuantity(cart)" type="button">-</button>
+                                <input class="mui-numbox-input" type="number" ng-model="cart.quantity" />
+                                <button class="mui-btn mui-numbox-btn-plus" ng-click="addQuantity(cart)" type="button">+</button>
+                            </div><br>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+
+</div>
+<div class="mui-row order-bar">
+    <div class="mui-col-sm-7 mui-col-xs-7">合计：<span>{{carts.length}}项服务订单</span></div>
+    <div class="mui-col-sm-5 mui-col-xs-5"><a ng-click="submit_order()" style="color:#fff;">提交订单</a></div>
+</div>
