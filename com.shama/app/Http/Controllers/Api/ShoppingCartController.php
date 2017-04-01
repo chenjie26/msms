@@ -92,7 +92,7 @@ class ShoppingCartController extends Controller
 
         $order->price = $totalPrice;
         $order->status = 0;
-        $order->user_id = $token->user_id;
+        $order->user_id = $token->id;
         if ($order->save()) {
             if ($order->details()->saveMany($orderItems)) {
                 ShoppingCart::destroy($content['ids']);

@@ -6,6 +6,7 @@ use App\Order;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http;
+use Tymon\JWTAuth\Facades\JWTAuth;
 
 class OrderController extends Controller
 {
@@ -43,6 +44,7 @@ class OrderController extends Controller
 
     public function withDetails(Request $request)
     {
-        return Order::with('details.serviceDetail', 'user')->get();
+        $token = JWTAuth::parseToken()->authenticate();
+        return Order::with('details.serviceDetail', 'user')->where('user_id', $token->id)->get();
     }
 }
