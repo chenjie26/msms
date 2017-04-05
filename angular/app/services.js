@@ -16,13 +16,14 @@ angular.module('myApp.services', [])
             }
         });
     })
-    .factory('User', function (Resource, API_HOST) {
+    .factory('User', function (Resource, API_HOST, LocalService) {
         return Resource(API_HOST + '/user/:action', {action: '@action'}, {
             get: {
                 method: 'GET'
             },
             update: {
-                method: 'PUT'
+                method: 'PUT',
+                headers: { 'Authorization': 'Bearer ' + angular.fromJson(LocalService.get('auth_token')).token }
             },
             remove: {
                 method: 'DELETE'
