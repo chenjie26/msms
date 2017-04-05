@@ -14,11 +14,11 @@ class AddColumnUser extends Migration
     public function up()
     {
         Schema::table('users', function ($table) {
-            $table->string('name');
-            $table->enum('sex', ['male', 'female']);;
-            $table->string('buildingNumber');
-            $table->string('roomNumber');
-            $table->dateTime('birthDay');
+            $table->string('name')->nullable();
+            $table->enum('sex', ['male', 'female'])->default('male');
+            $table->string('buildingNumber')->nullable();
+            $table->string('roomNumber')->nullable();
+            $table->dateTime('birthDay')->nullable();
         });
     }
 
