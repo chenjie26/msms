@@ -98,6 +98,7 @@ angular.module('myApp.auth', [])
 
         $scope.updateInfo = function () {
             User.update($scope.data, function (data) {
+                $state.go('/');
             });
         }
 

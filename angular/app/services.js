@@ -145,7 +145,7 @@ angular.module('myApp.services', [])
                 var register = $http.post(API_HOST + '/user/register', formData, { headers: {access_token: formData.username}});
                 register.then(function(result) {
                     if (result.data.user) {
-                        LocalService.set('auth_token', JSON.stringify(result.data));
+                        LocalService.set('auth_token', JSON.stringify(result.data.user));
                     }
                 });
                 return register;
