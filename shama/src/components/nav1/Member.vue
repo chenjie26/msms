@@ -29,13 +29,11 @@
 				</el-table-column>
 				<el-table-column prop="sex" label="性别" width="100" :formatter="formatSex" sortable>
 				</el-table-column>
-				<el-table-column prop="phone" label="电话" width="130" sortable>
+				<el-table-column prop="username" label="电话" width="130" sortable>
 				</el-table-column>
-				<el-table-column prop="birthday" label="生日" width="120" :formatter="formatBirth"  sortable>
+				<el-table-column prop="birthDay" label="生日" width="120" :formatter="formatBirth"  sortable>
 				</el-table-column>
 				<el-table-column prop="email" label="邮箱" sortable>
-				</el-table-column>
-				<el-table-column prop="card_id" label="卡号" sortable>
 				</el-table-column>
 				<el-table-column inline-template :context="_self" label="操作" width="100">
 					<span>
@@ -66,15 +64,15 @@
 						<el-option label="女" :value="0"></el-option>
 					</el-select>-->
 					<el-radio-group v-model="editForm.sex">
-						<el-radio class="radio" :label="1">男</el-radio>
-						<el-radio class="radio" :label="0">女</el-radio>
+						<el-radio class="radio" :label="female">男</el-radio>
+						<el-radio class="radio" :label="male">女</el-radio>
 					</el-radio-group>
 				</el-form-item>
 				<el-form-item label="电话">
-					<el-input-number v-model="editForm.phone" :min="0" :max="200"></el-input-number>
+					<el-input-number v-model="editForm.username" :min="0" :max="200"></el-input-number>
 				</el-form-item>
 				<el-form-item label="生日">
-					<el-date-picker type="date" placeholder="选择日期" v-model="editForm.birthday"></el-date-picker>
+					<el-date-picker type="date" placeholder="选择日期" v-model="editForm.birthDay"></el-date-picker>
 				</el-form-item>
 				<el-form-item label="邮箱">
 					<el-input type="textarea" v-model="editForm.email"></el-input>
@@ -121,9 +119,9 @@
 				editForm: {
 					id:0,
 					name: '',
-					sex: -1,
-					phone: 0,
-					birthday: '',
+					sex: 'male',
+					username: '',
+					birthDay: '',
 					email: ''
 				},
 				editLoading:false,
@@ -177,10 +175,10 @@
 			},
 			//性别显示转换
 			formatSex:function(row,column){
-				return row.sex==0?'男':row.sex==1?'女':'未知';
+				return row.sex=='male'?'男':row.sex=='female'?'女':'未知';
 			},
 			formatBirth:function(row,column){
-				return row.birthday= row.birthday.substring(0,10);;
+				return row.birthDay==null? '': row.birthDay.substring(0,10);;
 			},
 			//删除记录
 			handleDel:function(row){
@@ -221,8 +219,8 @@
 				this.editForm.id=row.id;
 				this.editForm.name=row.name;
 				this.editForm.sex=row.sex;
-				this.editForm.phone=row.phone;
-				this.editForm.birthday=row.birthday;
+				this.editForm.username=row.username;
+				this.editForm.birthDay=row.birthDay;
 				this.editForm.email=row.email;
 			},
 			//编辑 or 新增
@@ -253,8 +251,8 @@
 										id:new Date().getTime(),
 										name: _this.editForm.name,
 										sex: _this.editForm.sex,
-										phone: _this.editForm.phone,
-										birthday: _this.editForm.birthday==''?'':util.formatDate.format(new Date(_this.editForm.birthday),'yyyy-MM-dd'),
+										username: _this.editForm.username,
+										birthDay: _this.editForm.birthDay==''?'':util.formatDate.format(new Date(_this.editForm.birthDay),'yyyy-MM-dd'),
 										email: _this.editForm.email
 									});
 								}else{
@@ -263,8 +261,8 @@
 										if(_this.tableData[i].id==_this.editForm.id){
 											_this.tableData[i].name=_this.editForm.name;
 											_this.tableData[i].sex=_this.editForm.sex;
-											_this.tableData[i].phone=_this.editForm.phone;
-											_this.tableData[i].birthday=_this.editForm.birthday==''?'':util.formatDate.format(new Date(_this.editForm.birthday),'yyyy-MM-dd');
+											_this.tableData[i].username=_this.editForm.username;
+											_this.tableData[i].birthDay=_this.editForm.birthDay==''?'':util.formatDate.format(new Date(_this.editForm.birthDay),'yyyy-MM-dd');
 											_this.tableData[i].email=_this.editForm.email;
 											break;
 										}
@@ -287,9 +285,9 @@
 
 				this.editForm.id=0;
 				this.editForm.name='';
-				this.editForm.sex=1;
-				this.editForm.phone=0;
-				this.editForm.birthday='';
+				this.editForm.sex='male';
+				this.editForm.username='';
+				this.editForm.birthDay='';
 				this.editForm.email='';
 			}
     }
