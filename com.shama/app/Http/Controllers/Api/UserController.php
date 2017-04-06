@@ -19,6 +19,12 @@ use SmsManager as Manager;
 
 class UserController extends Controller
 {
+    const MODEL_NAME = \App\User::class;
+
+    public function __construct(){
+        $this->setModel(self::MODEL_NAME);
+    }
+
     public function login(Request $request)
     {
         $credentials = $request->only('username', 'password');
@@ -127,5 +133,26 @@ class UserController extends Controller
     public function getByToken()
     {
         return JWTAuth::parseToken()->authenticate();
+    }
+
+    public function _list(Request $request){
+        $model = $this->model;
+        $keywords = $request->input('keywords');
+
+        if($keywords){
+            $query = $model::where(function($query) use ($keywords){
+                $query->where('name','like','%'.$keywords.'%')
+                    ->orWhere('phone','like','%'.$keywords.'%')
+                    ->orWhere('email','like','%'.$keywords.'%')
+                    ->orWhere('birthday','like','%'.$keywords.'%');
+//                    ->orWhere('card_id','like','%'.$keywords.'%');
+            });
+            $paginate =  $query->paginate($this->getPerPage());
+        }else{
+            $paginate =  $model::paginate($this->getPerPage());
+        }
+
+        return $paginate;
+
     }
 }
