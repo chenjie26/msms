@@ -25,16 +25,16 @@ class OrderController extends Controller
         $keywords = $request->input('keywords');
 
         if($keywords){
-            $query = $model::join('members','orders.user_id','=','members.id')
-            ->select('orders.name','orders.message','orders.price','members.name as m_name','orders.status','orders.created_at','orders.uuid','orders.id')->where(function($query) use ($keywords){
+            $query = $model::join('users','orders.user_id','=','users.id')
+            ->select('orders.name','orders.message','orders.price','users.name as m_name','orders.status','orders.created_at','orders.uuid','orders.id')->where(function($query) use ($keywords){
                 $query->where('orders.name','like','%'.$keywords.'%')
-                    ->orWhere('members.name','like','%'.$keywords.'%')
-                    ->orWhere('uuid','like','%'.$keywords.'%');
+                    ->orWhere('users.name','like','%'.$keywords.'%');
+//                    ->orWhere('uuid','like','%'.$keywords.'%');
             });
             $paginate =  $query->paginate($this->getPerPage());
         }else{
-            $paginate =  $model::join('members','orders.user_id','=','members.id')
-            ->select('orders.name','orders.message','orders.price','members.name as m_name','orders.status','orders.created_at','orders.uuid','orders.id')
+            $paginate =  $model::join('users','orders.user_id','=','users.id')
+            ->select('orders.name','orders.message','orders.price','users.name as m_name','orders.status','orders.created_at','orders.uuid','orders.id')
             ->paginate($this->getPerPage());
         }
 

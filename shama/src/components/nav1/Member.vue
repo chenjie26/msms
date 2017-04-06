@@ -101,10 +101,10 @@
 	  				if(!obj.keywords)
 	  					obj.keywords = '';
 	  				
-					return 'http://shama.jcjever.com/members?page=' + obj.page + '&keywords=' + obj.keywords;
+					return 'http://shama.jcjever.com/users?page=' + obj.page + '&keywords=' + obj.keywords;
 				},
 				memberRemoveUrl: function (obj){
-					return 'http://shama.jcjever.com/members/' + obj.id;
+					return 'http://shama.jcjever.com/users/' + obj.id;
 				},
 				formInline: {
 					keywords: ''
