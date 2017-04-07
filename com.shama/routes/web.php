@@ -33,6 +33,8 @@ $api->version('v1', function ($api) {
 
             $api->any('/wechat', 'WechatController@serve');
             $api->any('/wxAuth', 'WechatController@auth');
+            $api->any('/wxAuth/callback', 'WechatController@oauthCallback');
+            $api->any('/wxAuth/profile', 'WechatController@getWeixinProfile');
         #管理员可用接口
 
             $api->get('/laravel_sms/info', '\Toplan\Sms\SmsController@getInfo');
