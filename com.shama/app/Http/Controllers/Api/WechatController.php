@@ -35,7 +35,7 @@ class WechatController extends Controller
 
         return $wechat->oauth->scopes(['snsapi_userinfo'])
             ->setRequest($request)
-            ->redirect();
+            ->redirect('/wxAuth/callback');
     }
 
     public function oauthCallback(Application $app, Request $request) {
