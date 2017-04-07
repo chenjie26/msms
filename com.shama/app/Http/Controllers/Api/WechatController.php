@@ -31,8 +31,20 @@ class WechatController extends Controller
     }
 
     public function auth(Application $wechat, Request $request) {
+
+
         return $wechat->oauth->scopes(['snsapi_userinfo'])
             ->setRequest($request)
             ->redirect();
+    }
+
+    public function oauthCallback(Application $app, Request $request) {
+        $user = $app->oauth->setRequest($request)->user();
+        return $user;
+    }
+
+    public function getWeixinProfile(Application $app) {
+        $user = $app->oauth->user();
+        return $user->getNickname(); // 对应微信的 nickname
     }
 }
