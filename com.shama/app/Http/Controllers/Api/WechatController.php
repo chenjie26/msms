@@ -33,6 +33,6 @@ class WechatController extends Controller
     public function auth(Application $wechat, Request $request) {
         return $wechat->oauth->scopes(['snsapi_userinfo'])
             ->setRequest($request)
-            ->redirect();
+            ->redirect('https://www.baidu.com');
     }
 }
