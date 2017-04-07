@@ -40,7 +40,7 @@ class WechatController extends Controller
 
     public function oauthCallback(Application $app, Request $request) {
         $user = $app->oauth->setRequest($request)->user();
-        return $user;
+        return $user->getId();
     }
 
     public function getWeixinProfile(Application $app) {
