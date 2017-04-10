@@ -29,7 +29,7 @@ Route::group(['middleware' => ['web', 'wechat.oauth']], function () {
     Route::get('/wxUser', function () {
         $user = session('wechat.oauth_user'); // 拿到授权用户资料
 
-        return $user;
+        dd($user);
     });
 });
 
