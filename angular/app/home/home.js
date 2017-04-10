@@ -71,7 +71,7 @@ function addMapOverlay(){
   ];
   for(var index = 0; index < markers.length; index++ ){
     var point = new BMap.Point(markers[index].position.lng,markers[index].position.lat);
-    var marker = new BMap.Marker(point,{icon:new BMap.Icon("/images/main/marker.png",new BMap.Size(35,50))});
+    var marker = new BMap.Marker(point,{icon:new BMap.Icon("images/main/marker.png",new BMap.Size(35,50))});
     // var label = new BMap.Label(markers[index].title,{offset: new BMap.Size(25,5)});
     var opts = {
       width: 200,
