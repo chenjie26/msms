@@ -73,7 +73,7 @@ class UserController extends Controller
             "openId" => $content['openId'],
             "email" => array_key_exists ('email', $content) ? $content['email'] : '',
             "name" => array_key_exists ('name', $content) ? $content['name'] : '',
-            "sex" => array_key_exists ('sex', $content) ? $content['sex'] : '',
+            "sex" => array_key_exists ('sex', $content) ? $content['sex'] : 'male',
             "buildingNumber" => array_key_exists ('buildingNumber', $content) ? $content['buildingNumber'] : '',
             "roomNumber" => array_key_exists ('roomNumber', $content) ? $content['roomNumber'] : '',
             "birthDay" => array_key_exists ('birthDay', $content) ? $content['birthDay'] : ''
