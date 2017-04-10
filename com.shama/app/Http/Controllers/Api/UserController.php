@@ -68,7 +68,14 @@ class UserController extends Controller
         $saveUser = array(
             "username" => $content['username'],
             "password" => $content['password'],
-            "email" => array_key_exists ('email', $content) ? $content['email'] : ''
+            "openId" => $content['openId'],
+            "email" => array_key_exists ('email', $content) ? $content['email'] : '',
+            "name" => array_key_exists ('name', $content) ? $content['name'] : '',
+            "sex" => array_key_exists ('sex', $content) ? $content['sex'] : '',
+            "buildingNumber" => array_key_exists ('buildingNumber', $content) ? $content['buildingNumber'] : '',
+            "roomNumber" => array_key_exists ('roomNumber', $content) ? $content['roomNumber'] : '',
+            "birthDay" => array_key_exists ('birthDay', $content) ? $content['birthDay'] : ''
+
         );
         $user = new User($saveUser);
 

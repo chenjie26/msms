@@ -38,6 +38,13 @@ class WechatController extends Controller
             ->redirect('http://shama.jcjever.com/wxAuth/callback');
     }
 
+    public function shamApp(Application $wechat, Request $request) {
+
+        return $wechat->oauth->scopes(['snsapi_userinfo'])
+            ->setRequest($request)
+            ->redirect('http://shama-app.jcjever.com/');
+    }
+
     public function oauthCallback(Application $app, Request $request) {
         $user = $app->oauth->setRequest($request)->user();
         return $user->getId();

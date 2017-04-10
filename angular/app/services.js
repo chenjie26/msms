@@ -98,15 +98,16 @@ angular.module('myApp.services', [])
             }
         });
     }).
-    factory('WeiXin', function ($http,$window,$location) {
-        $http({
-            url: API_HOST + '/wechat',
-            method: "get"
-        }).then(
-                function(res){
-                    $window.wx.config(res);
-                }
-            );
+    factory('WXUser', function ($http,$window,$location) {
+        return Resource(API_HOST + '/wxUser/:id', {id: '@id'}, {
+            get: {
+                method: 'GET'
+            },
+            remove: {
+                method: 'DELETE',
+                isArray: true
+            }
+        });
     })
     .factory('Auth', function($http, LocalService, AccessLevels, API_HOST) {
         return {
