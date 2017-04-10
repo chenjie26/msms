@@ -76,7 +76,7 @@ class UserController extends Controller
             "sex" => array_key_exists ('sex', $content) ? $content['sex'] : 'male',
             "buildingNumber" => array_key_exists ('buildingNumber', $content) ? $content['buildingNumber'] : '',
             "roomNumber" => array_key_exists ('roomNumber', $content) ? $content['roomNumber'] : '',
-            "birthDay" => array_key_exists ('birthDay', $content) ? $content['birthDay'] : ''
+            "birthDay" => array_key_exists ('birthDay', $content) ? $content['birthDay'] : null
 
         );
         $user = new User($saveUser);
