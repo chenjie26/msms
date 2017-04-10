@@ -44,11 +44,11 @@
 
 <div id="popover" class="mui-popover">
   <ul class="mui-table-view">
-    <li class="mui-table-view-cell"><a href="/#!/house" onclick="popover_btn_click()">Two bedroom - 100 sqm <br>二房-110平米</a></li>
-    <li class="mui-table-view-cell"><a href="/#!/house" onclick="popover_btn_click()">Three bedroom - 128 sqm <br>三房-128平米</a></li>
-    <li class="mui-table-view-cell"><a href="/#!/house" onclick="popover_btn_click()">Three bedroom - 140 sqm <br>三房-140平米</a></li>
-    <li class="mui-table-view-cell"><a href="/#!/house" onclick="popover_btn_click()">One bedroom - 96 sqm <br>一房-96平米</a></li>
-    <li class="mui-table-view-cell"><a href="/#!/house" onclick="popover_btn_click()">Duplex - 225 sqm <br>复式</a></li>
+    <li class="mui-table-view-cell"><a href="/app/#!/house" onclick="popover_btn_click()">Two bedroom - 100 sqm <br>二房-110平米</a></li>
+    <li class="mui-table-view-cell"><a href="/app/#!/house" onclick="popover_btn_click()">Three bedroom - 128 sqm <br>三房-128平米</a></li>
+    <li class="mui-table-view-cell"><a href="/app/#!/house" onclick="popover_btn_click()">Three bedroom - 140 sqm <br>三房-140平米</a></li>
+    <li class="mui-table-view-cell"><a href="/app/#!/house" onclick="popover_btn_click()">One bedroom - 96 sqm <br>一房-96平米</a></li>
+    <li class="mui-table-view-cell"><a href="/app/#!/house" onclick="popover_btn_click()">Duplex - 225 sqm <br>复式</a></li>
   </ul>
 </div>
 
@@ -66,9 +66,9 @@
   mui("#tab-bottom").on("tap","a",function(event){
     var id = this.getAttribute('v');
     if(id==1){
-      window.location.href="/";
+      window.location.href="/app";
     }else if(id==2){
-      window.location.href="#!/house";
+      window.location.href="/app/#!/house";
 //      mui('.mui-popover').popover('toggle',document.getElementById("popover-btn"));
 //      $('body,html').animate({ scrollTop: 0 }, 200, null ,function() {
 //        mui('.mui-popover').popover('toggle',document.getElementById("popover-btn"));
@@ -78,9 +78,9 @@
 //        mui('.mui-popover').popover('toggle',document.getElementById("popover-btn"));
 //      });
     }else if(id==3){
-      window.location.href="#!/service";
+      window.location.href="/app/#!/house";
     }else if(id==4){
-      window.location.href="#!/order";
+      window.location.href="/app/#!/house";
     }
   });
 </script>
