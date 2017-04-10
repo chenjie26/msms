@@ -28,8 +28,8 @@ Route::get('/', function () {
 $api = app('Dingo\Api\Routing\Router');
 $api->version('v1', function ($api) {
     $api->group(['namespace' => 'App\Http\Controllers\Api'], function ($api) {
-        $api::group(['middleware' => ['web', 'wechat.oauth']], function () {
-            Route::get('/wxUser', function () {
+        $api::group(['middleware' => ['web', 'wechat.oauth']], function ($api) {
+            $api->get('/wxUser', function () {
                 $user = session('wechat.oauth_user'); // 拿到授权用户资料
 
                 dd($user);
