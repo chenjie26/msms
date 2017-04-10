@@ -28,10 +28,6 @@ angular.module('myApp.service', ['ui.router', 'oc.lazyLoad', 'myApp.services'])
     $scope.showServices = [];
     $scope.items = [];
 
-    WXUser.get({}, function (data) {
-        console.log("data is", data);
-    });
-
     $scope.services = ServicePopulate.all({}, function (data) {
         $scope.services = data.services;
 

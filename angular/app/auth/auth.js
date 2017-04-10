@@ -38,7 +38,7 @@ angular.module('myApp.auth', [])
     }
 
 })
-    .controller('RegisterCtrl', function($scope, $state, $interval, Auth, LocalService) {
+    .controller('RegisterCtrl', function($scope, $state, $interval, Auth, LocalService, WXUser) {
 
         $scope.paracont = "获取验证码";
         $scope.paraclass = "but_null";
@@ -76,18 +76,21 @@ angular.module('myApp.auth', [])
 
         $scope.register = function () {
             // $state.go('/register2');
-            Auth.register($scope.data).then(function (result) {
-                if (!result.data.user) {
-                    alert("注册失败");
-                } else {
-                    var token = LocalService.get('auth_token');
-                    console.log("token is ", token);
-                    $state.go('/register2');
-                }
-                //$state.go('index.main');
-            }, function (data) {
-                console.log(data);
-                $scope.errorMsg = data.message;
+            WXUser.get({}, function (data) {
+                $scope.data.openId = data.id;
+                Auth.register($scope.data).then(function (result) {
+                    if (!result.data.user) {
+                        alert("注册失败");
+                    } else {
+                        var token = LocalService.get('auth_token');
+                        console.log("token is ", token);
+                        $state.go('/register2');
+                    }
+                    //$state.go('index.main');
+                }, function (data) {
+                    console.log(data);
+                    $scope.errorMsg = data.message;
+                });
             });
         }
 
