@@ -65,6 +65,8 @@ class UserController extends Controller
             return $formValidator->messages();
         }
 
+        Log::debug('save content is ', $content);
+
         $saveUser = array(
             "username" => $content['username'],
             "password" => $content['password'],
