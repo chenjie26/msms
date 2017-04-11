@@ -1,2 +1,3 @@
 com.shama.www/node_modules/
 shama/dist/
+com.shama/database/migrations/2017_04_05_115240_alter_column_user_1.php

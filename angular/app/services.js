@@ -99,7 +99,7 @@ angular.module('myApp.services', [])
         });
     }).
     factory('WXUser', function (Resource,API_HOST) {
-        return Resource(API_HOST + '/wxUser/:id', {id: '@id'}, {
+        return Resource(API_HOST + '/wxAuth/:id', {id: '@id'}, {
             get: {
                 method: 'GET'
             },

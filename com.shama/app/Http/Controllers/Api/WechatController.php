@@ -52,6 +52,6 @@ class WechatController extends Controller
 
     public function getWeixinProfile(Application $app) {
         $user = $app->oauth->user();
-        return $user->getNickname(); // 对应微信的 nickname
+        return response()->json($user);
     }
 }
