@@ -42,16 +42,16 @@ class WechatController extends Controller
 
         return $wechat->oauth->scopes(['snsapi_userinfo'])
             ->setRequest($request)
-            ->redirect('http://shama.jcjever.com/wxAuth/callback');
+            ->redirect('http://shama.jcjever.com/app');
     }
 
     public function oauthCallback(Application $app, Request $request) {
         $user = $app->oauth->setRequest($request)->user();
-        return redirect('http://shama.jcjever.com/app');
+        return $user->getId();
     }
 
-    public function getWeixinProfile(Application $app, Request $request) {
-        $user = $app->oauth->setRequest($request)->user();
+    public function getWeixinProfile(Application $app) {
+        $user = $app->oauth->user();
         return response()->json($user);
     }
 }
