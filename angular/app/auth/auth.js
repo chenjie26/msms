@@ -76,7 +76,7 @@ angular.module('myApp.auth', [])
 
         $scope.register = function () {
             // $state.go('/register2');
-            WXUser.get({id: "profile"}, function (data) {
+            WXUser.get({}, function (data) {
                 $scope.data.openId = data.id;
                 Auth.register($scope.data).then(function (result) {
                     if (!result.data.user) {
