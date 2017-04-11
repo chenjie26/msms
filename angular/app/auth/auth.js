@@ -84,7 +84,7 @@ angular.module('myApp.auth', [])
                     } else {
                         var token = LocalService.get('auth_token');
                         console.log("token is ", token);
-                        $state.go('/register2');
+                        $state.go('/');
                     }
                     //$state.go('index.main');
                 }, function (data) {

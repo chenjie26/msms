@@ -24,8 +24,46 @@
             <label><span class="mui-icon mui-icon-locked"></span></label>
             <input ng-model="data.password" type="password" class="mui-input-password" placeholder="请设置帐号登录密码">
         </div>
+        <div class="mui-input-row">
+            <label><span class="mui-icon mui-icon-phone"></span></label>
+            <input type="text" ng-model="data.name" class="mui-input-clear" placeholder="请填写姓名">
+        </div>
+        <div class="mui-row">
+            <div class="mui-col-sm-6 mui-col-xs-6">
+                <div class="mui-input-row mui-radio mui-left">
+                    <label>男</label>
+                    <input ng-model="data.sex" name="sex" value="male" type="radio">
+                </div>
+            </div>
+            <div class="mui-col-sm-6 mui-col-xs-6">
+                <div class="mui-input-row mui-radio mui-left">
+                    <label>女</span></label>
+                    <input ng-model="data.sex" name="sex" value="female" type="radio">
+                </div>
+            </div>
+
+        </div>
+        <div class="mui-row">
+            <div class="mui-col-sm-6 mui-col-xs-6">
+                <div class="mui-input-row mui-radio mui-left">
+                    <label>11号楼</label>
+                    <input ng-model="data.buildingNumber" name="buildingNumber" value="11" type="radio">
+                </div>
+            </div>
+            <div class="mui-col-sm-6 mui-col-xs-6">
+                <div class="mui-input-row mui-radio mui-left">
+                    <label>12号楼</span></label>
+                    <input ng-model="data.buildingNumber" name="buildingNumber" value="12" type="radio">
+                </div>
+            </div>
+        </div>
+
+        <div class="mui-input-row">
+            <label><span class="mui-icon mui-icon-locked"></span></label>
+            <input ng-model="data.roomNumber" type="input" class="mui-input-password" placeholder="房间号">
+        </div>
         <div class="mui-button-row">
-            <a ng-click="register()">NEXT</a>
+            <a ng-click="register()">注册</a>
         </div>
     </form>
 </div>
