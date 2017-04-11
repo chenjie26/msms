@@ -50,8 +50,8 @@ class WechatController extends Controller
         return redirect('http://shama.jcjever.com/app');
     }
 
-    public function getWeixinProfile(Application $app) {
-        $user = $app->oauth->user();
+    public function getWeixinProfile(Application $app, Request $request) {
+        $user = $app->oauth->setRequest($request)->user();
         return response()->json($user);
     }
 }
