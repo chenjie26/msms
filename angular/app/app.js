@@ -4,6 +4,7 @@
 var myapp = angular.module('myApp', [
   'ui.router',
   'ngResource',
+  'ngSanitize',
   'myApp.resource',
   'oc.lazyLoad',
   'myApp.service',

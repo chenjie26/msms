@@ -31,14 +31,22 @@ angular.module('myApp.news', [])
 })
 
 
-.controller('NewsCtrl', function($scope, User, LocalService) {
+.controller('NewsCtrl', function($scope, $state, User, Notification) {
 
     $scope.notifications = User.myNotification({action: 'myNotification'}, function (data) {
         $scope.notifications = data;
     });
 
-    console.log(" token is ", LocalService.get('auth_token'));
-
+    $scope.detail = function (notification) {
+        if (notification.read_at) {
+            $state.go('/newsDetail', {notificationId: notification.id});
+        } else {
+            Notification.markAsRead({id: notification.id, action: 'markAsRead'}, function (data) {
+                console.log('mark as read', data);
+                $state.go('/newsDetail', {notificationId: notification.id});
+            });
+        }
+    }
 })
 
 .controller('NewsDetailCtrl', function($scope, $stateParams, Notification) {
@@ -46,11 +54,4 @@ angular.module('myApp.news', [])
     $scope.notification = Notification.get({id: $stateParams.notificationId}, function (data) {
         $scope.notification = data;
     });
-
-    $scope.read = function () {
-        Notification.markAsRead({id: $stateParams.newsId, action: 'markAsRead'}, function (data) {
-            console.log('mark as read', data);
-
-        });
-    }
 });

@@ -9,7 +9,7 @@ angular.module('myApp.order', [])
     var AccessLevels = {
         anon: 0,
         user: 1
-    }
+    };
 
     $stateProvider.state('/order', {
         url: '/order',
