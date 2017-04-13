@@ -37,6 +37,7 @@
                     <span>
                         <el-button :id="tableData.id" type="text" size="small" @click="handleEdit(row)">编辑</el-button>
                         <el-button :id="tableData.id" type="text" size="small" @click="handleDel(row)">删除</el-button>
+                        <el-button :id="tableData.id" type="text" size="small" @click="handlePublish(row)">发布</el-button>
                     </span>
                 </el-table-column>
             </el-table>
@@ -101,6 +102,13 @@
                 DetailUrl: (obj) => {
                     if(obj.id){
                         return 'http://shama.jcjever.com/news/'+obj.id;
+                    }else{
+                        return 'http://shama.jcjever.com/news';
+                    }
+                },
+                PublishUrl: (obj) => {
+                    if(obj.id){
+                        return 'http://shama.jcjever.com/news/'+obj.id+'/publish';
                     }else{
                         return 'http://shama.jcjever.com/news';
                     }
@@ -233,6 +241,11 @@
             },
             loadDetail:function(id){
                 this.$http.get(this.ordersDetailUrl({id:id})).then((response) => {
+                    this.detailData = response.body.data;
+                }).catch(this.requestError);
+            },
+            handlePublish: function(row) {
+                this.$http.get(this.PublishUrl({id:row.id})).then((response) => {
                     this.detailData = response.body.data;
                 }).catch(this.requestError);
             },

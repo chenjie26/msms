@@ -186,4 +186,9 @@ class UserController extends Controller
         $notification->markAsRead();
         return response()->json($notification);
     }
+
+    public function notificationDelete($id) {
+        DatabaseNotification::destroy($id);
+        return $id;
+    }
 }

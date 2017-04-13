@@ -42,8 +42,14 @@ class NewsController extends Controller
 
         Log::debug('get news is ',  ['object' => $news->toJson()]);
 
-        $users = User::all();
-        Notification::send($users, new NewsPublish($news));
+        if(!empty($news->rommNumber)) {
+            $users = User::where('active', 1)->get();
+            Notification::send($users, new NewsPublish($news));
+        } else {
+            $users = User::all();
+            Notification::send($users, new NewsPublish($news));
+        }
+
         return array(
             "success" => true
         );
