@@ -27,6 +27,21 @@ angular.module('myApp.services', [])
             },
             remove: {
                 method: 'DELETE'
+            },
+            myNotification: {
+                method: 'GET',
+                headers: { 'Authorization': 'Bearer ' + angular.fromJson(LocalService.get('auth_token')).token },
+                isArray: true
+            }
+        });
+    })
+    .factory('Notification', function (Resource, API_HOST) {
+        return Resource(API_HOST + '/user/notification/:id/:action', {id: '@id',action: '@action'}, {
+            get: {
+                method: 'GET'
+            },
+            markAsRead: {
+                method: 'GET'
             }
         });
     })

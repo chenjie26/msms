@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
+use Illuminate\Support\Facades\Notification;
+use App\Notifications\NewsPublish;
+use Illuminate\Support\Facades\Log;
 
 class NewsController extends Controller
 {
@@ -30,5 +34,23 @@ class NewsController extends Controller
 
         return $paginate;
 
+    }
+
+    public function publish($id) {
+        $model = $this->model;
+        $news = $model::find($id);
+
+        Log::debug('get news is ',  ['object' => $news->toJson()]);
+
+        $users = User::all();
+        Notification::send($users, new NewsPublish($news));
+        return array(
+            "success" => true
+        );
+    }
+
+    public function notifications($id) {
+        $user = User::find($id);
+        return response()->json($user->notifications);
     }
 }

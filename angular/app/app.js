@@ -12,8 +12,8 @@ var myapp = angular.module('myApp', [
   'myApp.house',
   'myApp.auth',
   'myApp.member',
-  'myApp.shoppingCart'
-
+  'myApp.shoppingCart',
+  'myApp.news'
 ]);
 
 myapp.constant('API_HOST', 'http://shama.demo.com');

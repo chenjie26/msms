@@ -16,6 +16,8 @@ use phpDocumentor\Reflection\Types\Array_;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Validator;
 use SmsManager as Manager;
+use Illuminate\Support\Facades\Notification;
+use Illuminate\Notifications\DatabaseNotification;
 
 class UserController extends Controller
 {
@@ -163,5 +165,25 @@ class UserController extends Controller
 
         return $paginate;
 
+    }
+
+    public function myNotification() {
+        $token = JWTAuth::parseToken()->authenticate();
+        if (!$token) {
+            abort(401, 'not auth');
+        }
+        $user = User::find($token->id);
+        return response()->json($user->notifications);
+    }
+
+    public function notificationDetail($id) {
+        $notification = DatabaseNotification::find($id);
+        return response()->json($notification);
+    }
+
+    public function notificationMarkAsRead($id) {
+        $notification = DatabaseNotification::find($id);
+        $notification->markAsRead();
+        return response()->json($notification);
     }
 }

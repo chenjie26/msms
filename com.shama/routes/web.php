@@ -74,6 +74,9 @@ $api->version('v1', function ($api) {
             $api->post('/user/register','UserController@store');
             $api->put('/user','UserController@update');
             $api->get('/users','UserController@_list');
+            $api->get('/user/myNotification','UserController@myNotification');
+            $api->get('/user/notification/{id}','UserController@notificationDetail');
+            $api->get('/user/notification/{id}/markAsRead','UserController@notificationMarkAsRead');
 
             $api->post('/member/login','MemberController@login');
             $api->get('/member/logout','MemberController@logout');
@@ -138,6 +141,8 @@ $api->version('v1', function ($api) {
             $api->post('/news','NewsController@_add');
             $api->put('/news/{id}','NewsController@_edit');
             $api->delete('/news/{id}','NewsController@_del');
+            $api->get('/news/{id}/publish','NewsController@publish');
+            $api->get('/news/{id}/notifications','NewsController@notifications');
 
             $api->get('/actives','ActiveController@_list');
             $api->get('/actives/{id}','ActiveController@_detail');
