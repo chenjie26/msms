@@ -5,11 +5,18 @@
 
 
 
-<div class="mui-content member">
-    <ul class="mui-table-view">
-        <li ng-repeat="notification in notifications" class="mui-table-view-cell">
-            <a ng-click="detail(notification)">{{notification.data.name}}</a>
-            <span ng-if="!notification.read_at" class="mui-badge mui-badge-red">1</span>
+<div id="mianDiv" class="mui-content member">
+    <ul id="OA_task_1" class="mui-table-view">
+        <li ng-repeat="notification in notifications" class="mui-table-view-cell" on-finish-render="onFinish()">
+            <div class="mui-slider-handle">
+                <a ng-click="detail(notification)">{{notification.data.name}}</a>
+            </div>
+
+            <span ng-if="!notification.read_at" style="color: #dd524d;" class="mui-badge mui-badge-red">1</span>
+
+            <div class="mui-slider-right mui-disabled">
+                <a ng-click="remove(notification)" class="mui-btn mui-btn-red">删除</a>
+            </div>
         </li>
     </ul>
 </div>

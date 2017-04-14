@@ -51,6 +51,36 @@ myapp.filter('propsFilter', function() {
   }
 });
 
+myapp.directive('onFinishRender', ['$timeout', '$parse', function ($timeout, $parse) {
+  return {
+    restrict: 'A',
+    link: function (scope, element, attr) {
+      if (scope.$last === true) {
+        $timeout(function () {
+          scope.$emit('ngRepeatFinished');
+          if ( !! attr.onFinishRender) {
+            $parse(attr.onFinishRender)(scope);
+          }
+        });
+      }
+
+
+
+
+      if (!!attr.onStartRender) {
+        if (scope.$first === true) {
+          $timeout(function () {
+            scope.$emit('ngRepeatStarted');
+            if ( !! attr.onStartRender) {
+              $parse(attr.onStartRender)(scope);
+            }
+          });
+        }
+      }
+    }
+  }
+}]);
+
 myapp.config(function config($stateProvider, $urlRouterProvider, $ocLazyLoadProvider) {
   $ocLazyLoadProvider.config({
     // Set to true if you want to see what and when is dynamically loaded

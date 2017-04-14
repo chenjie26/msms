@@ -17,6 +17,15 @@ angular.module('myApp.news', [])
         controller: 'NewsCtrl',
         data: {
             access: AccessLevels.user
+        },
+        resolve: {
+          loadPlugin: function ($ocLazyLoad) {
+            return $ocLazyLoad.load([
+              {
+                files: ['http://apps.bdimg.com/libs/jquery/1.6.4/jquery.js']
+              }
+            ]);
+          }
         }
     });
 
@@ -36,6 +45,27 @@ angular.module('myApp.news', [])
     $scope.notifications = User.myNotification({action: 'myNotification'}, function (data) {
         $scope.notifications = data;
     });
+
+    $scope.remove = function (notification) {
+
+        var btnArray = ['确认', '取消'];
+        mui.confirm('确认删除该条记录？', '', btnArray, function(e) {
+            if (e.index == 0) {
+                Notification.remove({id: notification.id}, function (data) {
+                    console.log('delete notification', data);
+                    $scope.notifications.splice(notification, 1);
+                });
+            } else {
+                console.log('no');
+            }
+        });
+    }
+
+
+    $scope.onFinish = function () {
+        mui.init();
+    };
+
 
     $scope.detail = function (notification) {
         if (notification.read_at) {

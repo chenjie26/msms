@@ -42,6 +42,9 @@ angular.module('myApp.services', [])
             },
             markAsRead: {
                 method: 'GET'
+            },
+            remove: {
+                method: 'DELETE'
             }
         });
     })
