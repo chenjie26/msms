@@ -19,10 +19,14 @@ angular.module('myApp.home', [])
   });
 })
 
-.controller('HomeCtrl', function($scope) {
+.controller('HomeCtrl', function($scope, User) {
 
   scrollView();
   initMap();
+
+  $scope.notifications = User.unRead({action: 'unReadNotification'}, function (data) {
+    $scope.notifications = data;
+  })
 
   $scope.about = function () {
     mui(".shadow")[0].style.display = 'block';

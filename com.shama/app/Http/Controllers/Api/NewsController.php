@@ -43,7 +43,7 @@ class NewsController extends Controller
         Log::debug('get news is ',  ['object' => $news->toJson()]);
 
         if(!empty($news->rommNumber)) {
-            $users = User::where('active', 1)->orderBy('created_at', 'desc')->get();
+            $users = User::where('active', 1)->orderBy('created_at', 'asc')->get();
             Notification::send($users, new NewsPublish($news));
         } else {
             $users = User::orderBy('created_at', 'desc')->get();

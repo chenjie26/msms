@@ -172,8 +172,19 @@ class UserController extends Controller
         if (!$token) {
             abort(401, 'not auth');
         }
-        $user = User::find($token->id);
-        return response()->json($user->notifications);
+//        $user = User::find($token->id);
+        $notifications = DatabaseNotification::where('notifiable_id', $token->id)->orderBy('read_at', 'asc')->get();
+        return response()->json($notifications);
+//        return response()->json($user->notifications);
+    }
+
+    public function unReadNotification() {
+        $token = JWTAuth::parseToken()->authenticate();
+        if (!$token) {
+            abort(401, 'not auth');
+        }
+        $notifications = DatabaseNotification::where('read_at', null)->where('notifiable_id', $token->id)->orderBy('created_at', 'asc')->get();
+        return response()->json($notifications);
     }
 
     public function notificationDetail($id) {

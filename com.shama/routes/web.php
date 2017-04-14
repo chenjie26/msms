@@ -77,6 +77,7 @@ $api->version('v1', function ($api) {
             $api->get('/user/myNotification','UserController@myNotification');
             $api->get('/user/notification/{id}','UserController@notificationDetail');
             $api->get('/user/notification/{id}/markAsRead','UserController@notificationMarkAsRead');
+            $api->get('/user/unReadNotification/','UserController@unReadNotification');
             $api->delete('/user/notification/{id}','UserController@notificationDelete');
 
             $api->post('/member/login','MemberController@login');

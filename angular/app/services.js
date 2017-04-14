@@ -32,6 +32,11 @@ angular.module('myApp.services', [])
                 method: 'GET',
                 headers: { 'Authorization': 'Bearer ' + angular.fromJson(LocalService.get('auth_token')).token },
                 isArray: true
+            },
+            unRead: {
+                method: 'GET',
+                headers: { 'Authorization': 'Bearer ' + angular.fromJson(LocalService.get('auth_token')).token },
+                isArray: true
             }
         });
     })
