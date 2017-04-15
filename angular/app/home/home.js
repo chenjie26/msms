@@ -16,13 +16,18 @@ angular.module('myApp.home', [])
     //     ]);
     //   }
     // }
-  });
+  })
+  .state('/mapDetail', {
+    url: '/mapDetail',
+    templateUrl: 'home/mapDetail.html',
+    controller: 'MapDetailCtrl'
+  })
 })
 
-.controller('HomeCtrl', function($scope, User) {
+.controller('HomeCtrl', function($scope, $state, User) {
 
   scrollView();
-  initMap();
+  initMap($state);
 
   $scope.notifications = User.unRead({action: 'unReadNotification'}, function (data) {
     $scope.notifications = data;
@@ -37,6 +42,9 @@ angular.module('myApp.home', [])
     mui(".shadow")[0].style.display = 'block';
     mui("#contact-html")[0].style.display = 'block';
   };
+})
+.controller('MapDetailCtrl', function($scope, $state) {
+  initMapDetail();
 });
 
 
@@ -47,29 +55,24 @@ function scrollView() {
   });
 }
 
-var map;
-function initMap(){
-  createMap();//创建地图
-  setMapEvent();//设置地图事件
+var mapDetail;
+function initMapDetail(){
+  createMapDetail();//创建地图
+  setMapDetailEvent();//设置地图事件
   //addMapControl();//向地图添加控件
-  addMapOverlay();//向地图添加覆盖物
+  addMapDetailOverlay();//向地图添加覆盖物
 }
-function createMap(){
-  map = new BMap.Map("_map");
-  map.centerAndZoom(new BMap.Point(121.45127,31.198934),19);
+function createMapDetail(){
+  mapDetail = new BMap.Map("_mapDetail");
+  mapDetail.centerAndZoom(new BMap.Point(121.45127,31.198934),19);
 }
-function setMapEvent(){
-  map.enableScrollWheelZoom();
-  map.enableKeyboard();
-  map.enableDragging();
-  map.enableDoubleClickZoom()
+function setMapDetailEvent(){
+  mapDetail.enableScrollWheelZoom();
+  mapDetail.enableKeyboard();
+  mapDetail.enableDragging();
+  mapDetail.enableDoubleClickZoom()
 }
-function addClickHandler(target,window){
-  target.addEventListener("click",function(){
-    target.openInfoWindow(window);
-  });
-}
-function addMapOverlay(){
+function addMapDetailOverlay($state){
   var markers = [
     {content:"徐汇区辛耕路81弄永新世纪11和12号楼",title:"莎玛(上海徐家汇)",imageOffset: {width:0,height:3},position:{lat:31.199158,lng:121.451458}}
   ];
@@ -84,7 +87,48 @@ function addMapOverlay(){
     };
     var infoWindow = new BMap.InfoWindow(markers[index].content,opts);
     // marker.setLabel(label);
-    addClickHandler(marker);
+    mapDetail.addOverlay(marker);
+  };
+}
+
+var map;
+function initMap($state){
+  createMap();//创建地图
+  setMapEvent();//设置地图事件
+  //addMapControl();//向地图添加控件
+  addMapOverlay($state);//向地图添加覆盖物
+}
+function createMap(){
+  map = new BMap.Map("_map");
+  map.centerAndZoom(new BMap.Point(121.45127,31.198934),19);
+}
+function setMapEvent(){
+  map.enableScrollWheelZoom();
+  map.enableKeyboard();
+  map.enableDragging();
+  map.enableDoubleClickZoom()
+}
+function addClickHandler(target,$state){
+  target.addEventListener("click",function(){
+    $state.go('/mapDetail');
+  });
+}
+function addMapOverlay($state){
+  var markers = [
+    {content:"徐汇区辛耕路81弄永新世纪11和12号楼",title:"莎玛(上海徐家汇)",imageOffset: {width:0,height:3},position:{lat:31.199158,lng:121.451458}}
+  ];
+  for(var index = 0; index < markers.length; index++ ){
+    var point = new BMap.Point(markers[index].position.lng,markers[index].position.lat);
+    var marker = new BMap.Marker(point,{icon:new BMap.Icon("images/main/marker.png",new BMap.Size(35,50))});
+    // var label = new BMap.Label(markers[index].title,{offset: new BMap.Size(25,5)});
+    var opts = {
+      width: 200,
+      title: markers[index].title,
+      enableMessage: false
+    };
+    var infoWindow = new BMap.InfoWindow(markers[index].content,opts);
+    // marker.setLabel(label);
+    addClickHandler(marker,$state);
     map.addOverlay(marker);
   };
 }

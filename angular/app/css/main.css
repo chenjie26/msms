@@ -213,6 +213,15 @@ ul{
 	box-shadow: 1px 1px 8px #aaa;
 	margin-bottom:20px;
 }
+#_mapDetail{
+	border-radius: 10px;
+	height: 550px;
+	width: 94%;
+	margin-left: 3%;
+	margin-right: 3%;
+	box-shadow: 1px 1px 8px #aaa;
+	margin-bottom:20px;
+}
 #contact-html{
 	display: none;
 	position:absolute;
