@@ -224,7 +224,7 @@
                 }).catch(this.requestError);
             },
             loadServiceData(obj){
-                this.formInline.options = [{name: '男', value: 'male'},{name: '女', id: 'female'},{name: '11号楼', id: '11'}, {name: '12号楼', id: '12'}];
+                this.formInline.options = [{name: '男', id: 'male'},{name: '女', id: 'female'},{name: '11号楼', id: '11'}, {name: '12号楼', id: '12'}];
             },
             loadUserData(obj){
                 this.$http.get(this.ListUserUrl(obj)).then((response) => {
@@ -326,6 +326,7 @@
                             setTimeout(function(){
                                 console.log(_this.editForm.id);
                                 if(0 == _this.editForm.id){
+                                    console.log('insert obj is ', _this.editForm);
                                     _this.insert({
 	                                    name:_this.editForm.name,
 	                                    content:_this.editForm.content,

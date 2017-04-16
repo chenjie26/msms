@@ -42,7 +42,7 @@ class NewsController extends Controller
 
         Log::debug('get news is ',  ['object' => $news->toJson()]);
 
-        if(!empty($news->rommNumber)) {
+        if(!empty($news->roomNumber)) {
             if ($news->roomNumber == 'male' || $news->roomNumber == 'female') {
                 $users = User::where('sex', $news->roomNumber)->orderBy('created_at', 'asc')->get();
                 Notification::send($users, new NewsPublish($news));
