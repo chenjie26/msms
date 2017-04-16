@@ -30,12 +30,12 @@ angular.module('myApp.services', [])
             },
             myNotification: {
                 method: 'GET',
-                headers: { 'Authorization': 'Bearer ' + angular.fromJson(LocalService.get('auth_token')).token },
+                headers: { 'Authorization': 'Bearer ' + angular.fromJson(LocalService.get('auth_token')) ? '' : angular.fromJson(LocalService.get('auth_token')).token },
                 isArray: true
             },
             unRead: {
                 method: 'GET',
-                headers: { 'Authorization': 'Bearer ' + angular.fromJson(LocalService.get('auth_token')).token },
+                headers: { 'Authorization': 'Bearer ' + angular.fromJson(LocalService.get('auth_token')) ? '' : angular.fromJson(LocalService.get('auth_token')).token },
                 isArray: true
             }
         });
