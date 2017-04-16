@@ -62,14 +62,22 @@
         <!--编辑界面-->
         <el-dialog :title="editFormTtile" v-model="editFormVisible" :close-on-click-modal="false" size="large" >
             <el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm">
-			<el-form-item label="分类" >
-				<el-select v-model="editForm.type_id" placeholder="请选择分类">
+			<el-form-item label="推送目标" >
+				<el-select v-model="editForm.type_id" placeholder="请选择推送类别">
 					<el-option
 					  v-for="item in formInline.options"
 					  :label="item.name"
 					  :value="item.id">
 					</el-option>
 				</el-select>
+				OR
+				<el-select v-model="editForm.user_id" placeholder="请选择推送用户">
+                    <el-option
+                      v-for="item in formInline.users"
+                      :label="item.username"
+                      :value="item.id">
+                    </el-option>
+                </el-select>
 			</el-form-item>
                 <el-form-item label="名称" prop="name">
                     <el-input placeholder="请输入内容" v-model="editForm.name"></el-input>
@@ -129,6 +137,13 @@
                         obj.keywords = '';
                     return 'http://shama.jcjever.com/news_types';
                 },
+                ListUserUrl: function (obj){
+                    if(!obj.page)
+                        obj.page = 1;
+                    if(!obj.keywords)
+                        obj.keywords = '';
+                    return 'http://shama.jcjever.com/users';
+                },
                 formInline: {
                     keywords: '',
                     options:[],
@@ -148,7 +163,8 @@
                 //编辑界面数据
                 editForm: {
                     id:0,
-					type_id:''
+					type_id:'',
+					user_id:''
                 },
                 editLoading:false,
                 btnEditText:'提 交',
@@ -164,6 +180,7 @@
     mounted: function (){
         this.loadData({page:1});
         this.loadServiceData({page:1});
+        this.loadUserData({page:1});
     },
     methods: {
             serviceChange(val){
@@ -209,6 +226,11 @@
             loadServiceData(obj){
                 this.$http.get(this.ListNewsTypeUrl(obj)).then((response) => {
                     this.formInline.options = response.body.data;
+                }).catch(this.requestError);
+            },
+            loadUserData(obj){
+                this.$http.get(this.ListUserUrl(obj)).then((response) => {
+                    this.formInline.users = response.body.data;
                 }).catch(this.requestError);
             },
             loadData(obj){
@@ -290,6 +312,7 @@
                 this.editForm.name = row.name;
                 this.editForm.content = row.content;
 				this.editForm.type_id = row.type_id;
+				this.editForm.user_id = row.user_id;
             },
             //编辑 or 新增
             editSubmit:function(){
@@ -308,13 +331,15 @@
                                     _this.insert({
 	                                    name:_this.editForm.name,
 	                                    content:_this.editForm.content,
-										type_id:_this.editForm.type_id
+										type_id:_this.editForm.type_id,
+										user_id:_this.editForm.user_id
                                     },function(response){
                                         _this.tableData.push({
                                             id:response.body.news.id,
 											name:_this.editForm.name,
 		                                    content:_this.editForm.content,
 											type_id:_this.editForm.type_id,
+											user_id:_this.editForm.user_id,
 											created_at:response.body.news.created_at
                                         })
                                     });
@@ -323,7 +348,8 @@
                                         id:_this.editForm.id,
 										name:_this.editForm.name,
 	                                    content:_this.editForm.content,
-										type_id:_this.editForm.type_id
+										type_id:_this.editForm.type_id,
+										user_id:_this.editForm.user_id
                                     });
                                 }
 
@@ -347,6 +373,7 @@
                                             _this.tableData[i].name=_this.editForm.name;
 											_this.tableData[i].content=_this.editForm.content;
                                             _this.tableData[i].type_id=_this.editForm.type_id;
+                                            _this.tableData[i].user_id=_this.editForm.user_id;
                                             break;
                                         }
                                     }
@@ -369,7 +396,8 @@
 
 				_this.editForm.name = '',
 				_this.editForm.content = '',
-				_this.editForm.type_id = ''
+				_this.editForm.type_id = '',
+				_this.editForm.user_id = ''
             }
     }
   }

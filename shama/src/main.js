@@ -56,20 +56,20 @@ const routes = [
       //{ path: '/main', component: Main },
       { path: '/member', component: Member, name: '会员' },
       { path: '/order', component: Order, name: '订单' },
-      { path: '/active', component: Active, name: '活动' },
-      { path: '/feedback', component: Feedback, name: '留言' },
+      // { path: '/active', component: Active, name: '活动' },
+      // { path: '/feedback', component: Feedback, name: '留言' },
     ]
   },
 
-  {
-    path: '/',
-    component: Home,
-    name: '基础信息',
-    iconCls: 'el-icon-setting',
-    children: [
-      { path: '/BaseInfo', component: BaseInfo, name: '基础信息' }
-    ]
-  },
+  // {
+  //   path: '/',
+  //   component: Home,
+  //   name: '基础信息',
+  //   iconCls: 'el-icon-setting',
+  //   children: [
+  //     { path: '/BaseInfo', component: BaseInfo, name: '基础信息' }
+  //   ]
+  // },
   {
     path: '/',
     component: Home,
