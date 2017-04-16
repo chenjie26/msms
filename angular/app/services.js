@@ -23,7 +23,7 @@ angular.module('myApp.services', [])
             },
             update: {
                 method: 'PUT',
-                headers: { 'Authorization': 'Bearer ' + angular.fromJson(LocalService.get('auth_token')).token }
+                headers: { 'Authorization': 'Bearer ' + angular.fromJson(LocalService.get('auth_token')) ? '' : angular.fromJson(LocalService.get('auth_token')).token },
             },
             remove: {
                 method: 'DELETE'
