@@ -4,7 +4,7 @@
         <el-col :span="24" class="toolbar">
             <el-form :inline="true" :model="formInline" class="demo-form-inline">
                 <el-form-item>
-                    <el-select v-model="formInline.type_id" @change="serviceChange" placeholder="请选择分类">
+                    <el-select v-model="formInline.roomNumber" @change="serviceChange" placeholder="请选择关键字">
                         <el-option
                           v-for="item in formInline.options"
                           :label="item.name"
@@ -14,7 +14,7 @@
                 </el-form-item><!--
                 <el-form-item>
                     <el-input v-model="formInline.keywords" placeholder="关键词"></el-input>
-                </el-form-item
+                </el-form-item>
                 <el-form-item>
                     <el-button v-on:click="search">查询</el-button>
                 </el-form-item>>-->
@@ -63,7 +63,7 @@
         <el-dialog :title="editFormTtile" v-model="editFormVisible" :close-on-click-modal="false" size="large" >
             <el-form :model="editForm" label-width="80px" :rules="editFormRules" ref="editForm">
 			<el-form-item label="推送目标" >
-				<el-select v-model="editForm.type_id" placeholder="请选择推送类别">
+				<el-select v-model="editForm.roomNumber" placeholder="请选择推送类别">
 					<el-option
 					  v-for="item in formInline.options"
 					  :label="item.name"
@@ -126,9 +126,9 @@
                         obj.page = 1;
                     if(!obj.keywords)
                         obj.keywords = '';
-					if(!obj.type_id)
-                        obj.type_id = '';
-                    return 'http://shama.jcjever.com/news?page=' + obj.page + '&keywords=' + obj.keywords + '&type_id=' + obj.type_id;
+					if(!obj.roomNumber)
+                        obj.roomNumber = '';
+                    return 'http://shama.jcjever.com/news?page=' + obj.page + '&keywords=' + obj.keywords + '&roomNumber=' + obj.roomNumber;
                 },
                 ListNewsTypeUrl: function (obj){
                     if(!obj.page)
@@ -147,7 +147,7 @@
                 formInline: {
                     keywords: '',
                     options:[],
-                    type_id: ''
+                    roomNumber: ''
                 },
                 pickerOptions0: {
                     disabledDate(time) {
@@ -163,8 +163,8 @@
                 //编辑界面数据
                 editForm: {
                     id:0,
-					type_id:'',
-					user_id:''
+					roomNumber:'',
+					user_id: 0
                 },
                 editLoading:false,
                 btnEditText:'提 交',
@@ -184,7 +184,7 @@
     },
     methods: {
             serviceChange(val){
-                this.loadData({page:1,type_id:val});
+                this.loadData({page:1,roomNumber:val});
             },
             search(){
                 this.loadData({keywords:this.formInline.keywords});
@@ -224,9 +224,7 @@
                 }).catch(this.requestError);
             },
             loadServiceData(obj){
-                this.$http.get(this.ListNewsTypeUrl(obj)).then((response) => {
-                    this.formInline.options = response.body.data;
-                }).catch(this.requestError);
+                this.formInline.options = [{name: '男', value: 'male'},{name: '女', id: 'female'},{name: '11号楼', id: '11'}, {name: '12号楼', id: '12'}];
             },
             loadUserData(obj){
                 this.$http.get(this.ListUserUrl(obj)).then((response) => {
@@ -311,7 +309,7 @@
                 this.editForm.id=row.id;
                 this.editForm.name = row.name;
                 this.editForm.content = row.content;
-				this.editForm.type_id = row.type_id;
+				this.editForm.roomNumber = row.roomNumber;
 				this.editForm.user_id = row.user_id;
             },
             //编辑 or 新增
@@ -331,14 +329,14 @@
                                     _this.insert({
 	                                    name:_this.editForm.name,
 	                                    content:_this.editForm.content,
-										type_id:_this.editForm.type_id,
+										roomNumber:_this.editForm.roomNumber,
 										user_id:_this.editForm.user_id
                                     },function(response){
                                         _this.tableData.push({
                                             id:response.body.news.id,
 											name:_this.editForm.name,
 		                                    content:_this.editForm.content,
-											type_id:_this.editForm.type_id,
+											roomNumber:_this.editForm.roomNumber,
 											user_id:_this.editForm.user_id,
 											created_at:response.body.news.created_at
                                         })
@@ -348,7 +346,7 @@
                                         id:_this.editForm.id,
 										name:_this.editForm.name,
 	                                    content:_this.editForm.content,
-										type_id:_this.editForm.type_id,
+										roomNumber:_this.editForm.roomNumber,
 										user_id:_this.editForm.user_id
                                     });
                                 }
@@ -372,7 +370,7 @@
                                         if(_this.tableData[i].id==_this.editForm.id){
                                             _this.tableData[i].name=_this.editForm.name;
 											_this.tableData[i].content=_this.editForm.content;
-                                            _this.tableData[i].type_id=_this.editForm.type_id;
+                                            _this.tableData[i].roomNumber=_this.editForm.roomNumber;
                                             _this.tableData[i].user_id=_this.editForm.user_id;
                                             break;
                                         }
@@ -396,8 +394,8 @@
 
 				_this.editForm.name = '',
 				_this.editForm.content = '',
-				_this.editForm.type_id = '',
-				_this.editForm.user_id = ''
+				_this.editForm.roomNumber = '',
+				_this.editForm.user_id = 0
             }
     }
   }

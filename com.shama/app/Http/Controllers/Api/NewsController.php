@@ -52,7 +52,7 @@ class NewsController extends Controller
                 $users = User::where('roomNumber', $news->roomNumber)->orderBy('created_at', 'asc')->get();
                 Notification::send($users, new NewsPublish($news));
             }
-        } else if (!empty($news->user_id)) {
+        } else if ($news->user_id > 0) {
             $users = User::where('id', $news->user_id)->orderBy('created_at', 'asc')->get();
             Notification::send($users, new NewsPublish($news));
         } else {
